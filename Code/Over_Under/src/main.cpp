@@ -35,11 +35,11 @@ void disabled() {}
  */
 void competition_initialize() {}
 
-Motor cataMotor(9);
-Motor intakeMotor(-3);
+Motor cataMotor(8);
+Motor intakeMotor(-7);
 ADIButton cataLimit('B');
-DistanceSensor intakeSensor(10);
-pros::ADIDigitalOut piston('A');
+DistanceSensor intakeSensor(9);
+pros::ADIDigitalOut flap('A');
 
 
 Controller controller;        //Defines the controller
@@ -50,63 +50,174 @@ ControllerButton cataShootManual(ControllerDigital::R2);
 ControllerButton intakeIN(ControllerDigital::L1);
 ControllerButton intakeOUT(ControllerDigital::L2);
 
-ControllerButton flapOUT(ControllerDigital::up);
-ControllerButton flapIN(ControllerDigital::down);
+//ControllerButton flapOUT(ControllerDigital::up);
+//ControllerButton flapIN(ControllerDigital::down);
+ControllerButton flapToggle(ControllerDigital::down);
 
 
 std::shared_ptr<ChassisController> chassis =
 ChassisControllerBuilder()
-    .withMotors({-1, -2, -8}, {4, 5, 6})
+    .withMotors({-1, -2, -3}, {4, 5, 6})
     // Green gearset, 3.25 in wheel diam, 9.4 in wheel track
     .withDimensions({AbstractMotor::gearset::blue , (60.0 / 36.0)}, {{3.25_in, 11_in}, imev5BlueTPR})
+    .withMaxVelocity(600)
     .build();
 
 std::shared_ptr<AsyncMotionProfileController> profileController =
 AsyncMotionProfileControllerBuilder()
   .withLimits({
-    0.5, //max linear velocity
+    1, //max linear velocity
     2.0, //max linear acceleration
     10.0 //max jerk
   })
 .withOutput(chassis)
 .buildMotionProfileController();
 
-void autonomous() {
-  chassis->setMaxVelocity(75);
 
-  piston.set_value(true);
-  chassis->moveDistance(-5_in);
-  piston.set_value(false);
+void autonomousroutine1() {
+  chassis->setMaxVelocity(250);
 
-  chassis->turnAngle(-135_deg);
-  chassis->moveDistanceAsync(8_in);
-  pros::delay(500);
-  intakeMotor.moveVoltage(-12000);
-  //pros::delay(1000);
-  chassis->waitUntilSettled();
-  intakeMotor.moveVoltage(0);
-  chassis->moveDistance(-2_in);
-  chassis->turnAngle(180_deg);
+chassis->moveDistance(18_in);
 
-  chassis->setMaxVelocity(100);
-  chassis->moveDistance(-7_in);
+chassis->turnAngle(45_deg);
+chassis->moveDistance(7_in);
+intakeMotor.moveVoltage(-12000);
+pros::delay(500);
 
-  //chassis->setMaxVelocity(100);
-  chassis->moveDistance(8_in);
-  chassis->turnAngle(-45_deg);
-  //chassis->moveDistance(34_in);
-  //chassis->turnAngle(-45_deg);
-  //chassis->moveDistance(24_in);
+intakeMotor.moveVoltage(0);
+chassis->moveDistance(-7_in);
 
-//profileController->tarePosition();
-profileController->generatePath({
-  {0_ft, 0_ft, 45_deg},
-  {15_in, 24_in, 45_deg},
-  {60_in, 24_in, 0_deg}},
-  "A" );
-profileController->setTarget("A");
+chassis->turnAngle(180_deg);
+chassis->moveDistance(-13_in);
+chassis->moveDistance(12_in);
+
+chassis->turnAngle(-40_deg);
+
+
+chassis->moveDistanceAsync(19_in);
+flap.set_value(true);
+chassis->waitUntilSettled();
+
+chassis->turnAngleAsync(-50_deg);
+flap.set_value(false);
+chassis->waitUntilSettled();
+
+chassis->setMaxVelocity(350);
+
+intakeMotor.moveVoltage(-12000);
+chassis->moveDistance(37_in);
+
+pros::delay(2000);
+intakeMotor.moveVoltage(0);
 
 }
+
+void autonomousroutine2() { //flap slap preload, go to pick up one and grab other with flap, go for third
+//cata thing
+
+profileController->generatePath({
+    {0_ft, 0_ft, 0_deg},
+    {32_ft, 0_ft, 0_deg}},
+    "A"
+    );
+    profileController->setTarget("A");
+    profileController->waitUntilSettled();
+
+chassis->moveDistance(-12_in);
+
+chassis->turnAngle(75_deg);
+intakeMotor.moveVoltage(-12000);
+pros::delay(1000);
+intakeMotor.moveVoltage(0);
+chassis->turnAngle(-165_deg);
+chassis->moveDistance(15_in);
+
+flap.set_value(true);
+chassis->moveDistance(-32_in);
+
+chassis->moveDistance(5_in);
+flap.set_value(false);
+
+chassis->turnAngle(15_deg);
+chassis->moveDistance(36_in);
+
+//intake motor thing
+
+chassis->moveDistance(-36_in);
+chassis->turnAngle(75_deg);
+chassis->moveDistanceAsync(5_in);
+intakeMotor.moveVoltage(-12000);
+
+chassis->waitUntilSettled();
+chassis->moveDistance(-4_in);
+
+}
+
+
+void skillsroutine() {
+flap.set_value(true);
+
+chassis->moveDistanceAsync(-10_in);
+pros::delay(250);
+flap.set_value(false);
+chassis->waitUntilSettled();
+
+chassis->turnAngle(90_deg);
+chassis->moveDistance(4_in);
+
+int cataCounter = 0;
+while (cataCounter < 46) {
+  cataMotor.moveVoltage(12000);
+  if (cataLimit.isPressed()) {
+    cataCounter += 1;
+  }
+  pros::delay(10);
+}
+  //cata thing
+
+chassis->turnAngle(-75_deg);
+
+
+
+flap.set_value(true);
+chassis->moveDistance(-24_in);
+flap.set_value(false);
+chassis->turnAngle(-10_deg);
+chassis->moveDistance(10_in);
+chassis->turnAngle(10_deg);
+chassis->moveDistance(-9_in);
+
+
+};
+
+void autonTesting() {
+  profileController->generatePath({
+    {0_ft, 0_ft, 0_deg},
+    {2_ft, 1_ft, 90_deg}},
+    "A"
+    );
+
+  //  profileController->setTarget("A");
+    //profileController->waitUntilSettled();
+
+    //pros::delay(3000);
+
+  profileController->generatePath({
+    {0_ft, 0_ft, 0_deg},
+    {2_ft, -1_ft, -90_deg},
+    {2_ft, -2_ft, -90_deg}},
+    "B"
+    );
+
+    profileController->setTarget("B");
+    profileController->waitUntilSettled();
+}
+
+void autonomous() {
+  autonomousroutine1();
+//autonTesting();
+} 
+
 
 void resetCata() {
 if (cataShoot.isPressed()){                           //If catapult shoot button is pressed
@@ -130,8 +241,6 @@ void setCata() {
     }
 }
 
-//bool currState = false;
-//bool prevState = false;
 
 void setIntake() {
 	if (intakeIN.isPressed()) {
@@ -152,11 +261,11 @@ void setIntake() {
 
 
 void setFlap() {
-  if (flapOUT.isPressed()) {
-    piston.set_value(true);
+  if (flapToggle.isPressed()) {
+    flap.set_value(true);
   }
-  if (flapIN.isPressed()) {
-    piston.set_value(false);
+  else {
+    flap.set_value(false);
   }
 }
 /**
@@ -176,12 +285,10 @@ void setFlap() {
 
 void opcontrol() {
 	while (true) {
-
-
     chassis->getModel()->tank(controller.getAnalog(ControllerAnalog::leftY),
                             controller.getAnalog(ControllerAnalog::rightY));
-    resetCata();
-    setCata();
+  resetCata();
+  setCata();
 	setIntake();
   setFlap();
 	pros::delay(10);
