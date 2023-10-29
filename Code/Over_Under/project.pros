@@ -4,6 +4,46 @@
         "project_name": "Over_Under",
         "target": "v5",
         "templates": {
+            "ARMS": {
+                "location": "/home/thinkpad/.var/app/com.visualstudio.code/config/pros/templates/ARMS@3.2.0",
+                "metadata": {
+                    "origin": "local"
+                },
+                "name": "ARMS",
+                "py/object": "pros.conductor.templates.local_template.LocalTemplate",
+                "supported_kernels": "^3.7.2",
+                "system_files": [
+                    "include/ARMS/selector.h",
+                    "include/ARMS/api.h",
+                    "include/ARMS/config.h",
+                    "include/ARMS/chassis.h",
+                    "firmware/ARMS.a",
+                    "include/ARMS/pid.h",
+                    "include/ARMS/odom.h",
+                    "include/ARMS/point.h",
+                    "include/ARMS/flags.h"
+                ],
+                "target": "v5",
+                "user_files": [],
+                "version": "3.2.0"
+            },
+            "gif-pros": {
+                "location": "/home/thinkpad/.var/app/com.visualstudio.code/config/pros/templates/gif-pros@2.1.1",
+                "metadata": {
+                    "origin": "local"
+                },
+                "name": "gif-pros",
+                "py/object": "pros.conductor.templates.local_template.LocalTemplate",
+                "supported_kernels": "^3.2.0",
+                "system_files": [
+                    "include\\gif-pros\\gifdec.h",
+                    "firmware\\gif-pros.a",
+                    "include\\gif-pros\\gifclass.hpp"
+                ],
+                "target": "v5",
+                "user_files": [],
+                "version": "2.1.1"
+            },
             "kernel": {
                 "location": "/home/thinkpad/.var/app/com.visualstudio.code/config/pros/templates/kernel@3.8.0",
                 "metadata": {
