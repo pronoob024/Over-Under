@@ -20,9 +20,11 @@
  * to keep execution time for this mode under a few seconds.
  */
 
+using arms::chassis::move;
+
 void initialize() {
   arms::init();
-  pros::lcd::initialize();
+ // pros::lcd::initialize();
 }
 
 /**
@@ -47,15 +49,16 @@ void competition_initialize() {
 
 Motor cataMotor(8);
 Motor intakeMotor(-7);
-ADIButton cataLimit('B');
+ADIButton cataLimit('A');
 DistanceSensor intakeSensor(9);
-pros::ADIDigitalOut flap('A');
-pros::ADIDigitalOut hangLeft('D');
-pros::ADIDigitalOut hangRight('E');
+pros::ADIDigitalOut flap('B');
+pros::ADIDigitalOut hangLeft('C');
+pros::ADIDigitalOut hangRight('D');
 
 
-Controller controller;        //Defines the controller
-//
+Controller controller;        //Defines the controller for Okapi
+pros::Controller master (pros::E_CONTROLLER_MASTER);    //Defines the controller for driving
+
 ControllerButton cataShoot(ControllerDigital::R1);
 ControllerButton cataShootManual(ControllerDigital::R2);
 //
@@ -65,53 +68,93 @@ ControllerButton intakeOUT(ControllerDigital::L2);
 ControllerButton flapToggle(ControllerDigital::down);
 
 ControllerButton hang(ControllerDigital::X);
-pros::Controller master (pros::E_CONTROLLER_MASTER);
+
 
 
 void CloseSideAWP() {
-arms::odom::reset({0, 0}, -135);
+arms::odom::reset({0, 0}, 25);
 
-arms::chassis::move({21,16, 180}, 80, arms::REVERSE);
-arms::chassis::move({28,16, 180}, 80, arms::REVERSE);
+arms::chassis::move({23,16, 180}, 80); //Push preload to goal
+intakeMotor.moveVoltage(-12000);
+arms::chassis::move({-4, 0}, 75, arms::RELATIVE | arms::REVERSE);
 
+arms::chassis::turn(180, 80);
+arms::chassis::move({-5, 0}, 80,arms::RELATIVE | arms::REVERSE);
 
-arms::chassis::move({-1,4}, 80, arms::ASYNC);
+arms::chassis::move({5, 0}, 80, arms::RELATIVE);
+
+arms::chassis::turn(-135, 80);
+
+arms::chassis::move({-1,4}, 80, arms::ASYNC); //Drive to match load zone
 pros::delay(500);
 flap.set_value(true);
 arms::chassis::waitUntilFinished(2);
-arms::chassis::turn(-90);
+arms::chassis::turn(-90);                 //Remove match load
 flap.set_value(false);
 
-arms::chassis::move({-1,-39, -90}, 80);
+arms::chassis::move({-1,-39, -90}, 80); //Drive to contact elevation bar
 
 }
 
 
 void FarSideAWP() {
-arms::odom::reset({0, -24}, 90);
+arms::odom::reset({-4, 24}, 90);
 
-arms::chassis::move({0,-26}, 60);
+arms::chassis::move({-4, 26}, 60);    //Pick up triball
 
-while (intakeSensor.get() > 50) {
-	intakeMotor.moveVoltage(12000);
-}
+intakeMotor.moveVoltage(12000);
+pros::delay(750);
 intakeMotor.moveVoltage(0);
 
-arms::chassis::move({21,-16, 180}, 80, arms::REVERSE);
-arms::chassis::move({28,-16, 180}, 80, arms::REVERSE);
+arms::chassis::move({-4, 0}, 80, arms::REVERSE);    //Driving to goal
 
-arms::chassis::move({23,-16}, 80);
-arms::chassis::turn(0);
-arms::chassis::move({30,-16}, 80, arms::ASYNC);
+arms::chassis::move({22,-24, 180}, 80, arms::REVERSE);   //Drive into goal
+
+arms::chassis::move({-2,0}, 80, arms::RELATIVE);    //Back away
+
+arms::chassis::move({4,0}, 80, arms::RELATIVE | arms::ASYNC);
 intakeMotor.moveVoltage(-12000);
+
 arms::chassis::waitUntilFinished(2);
-pros::delay(550);
-
-arms::chassis::move({23,-16}, 80, arms::REVERSE);
 
 
+arms::chassis::move({-5, 0}, 80, arms::REVERSE | arms::RELATIVE);
+intakeMotor.moveVoltage(0);
+
+////////////////////
+
+arms::chassis::move({28,30, 90}, 80);
+
+intakeMotor.moveVoltage(12000);
+pros::delay(750);
+intakeMotor.moveVoltage(0);
+
+arms::chassis::turn(-75, 80);
+
+arms::chassis::move({6, 0}, 90, arms::RELATIVE);
+intakeMotor.moveVoltage(-12000);
+arms::chassis::waitUntilFinished(1);
+intakeMotor.moveVoltage(0);
+
+arms::chassis::move({52,30}, 80, arms::ASYNC);
+
+intakeMotor.moveVoltage(12000);
+
+arms::chassis::waitUntilFinished(1);
+pros::delay(100);
+intakeMotor.moveVoltage(0);
+
+arms::chassis::turn(-90, 90);
 
 
+arms::chassis::move({2,32}, 100, arms::THRU | arms::RELATIVE | arms::ASYNC);
+flap.set_value(true);
+flap.set_value(true);
+
+intakeMotor.moveVoltage(-12000);
+
+arms::chassis::waitUntilFinished(2);
+arms::chassis::move({-10,0}, 100, arms::RELATIVE | arms:: THRU);
 }
 
 
@@ -121,53 +164,96 @@ void CloseSideBlitz() {
 
 
 void FarSideBlitz() {
+arms::odom::reset({-4, 0});
+
+flap.set_value(true);
+pros::delay(500);
+flap.set_value(false);
+
+
+arms::chassis::move({28,30, 90}, 80);
+
+intakeMotor.moveVoltage(12000);
+pros::delay(750);
+intakeMotor.moveVoltage(0);
+
+arms::chassis::turn(-75, 80);
+
+arms::chassis::move({6, 0}, 90, arms::RELATIVE);
+intakeMotor.moveVoltage(-12000);
+arms::chassis::waitUntilFinished(1);
+intakeMotor.moveVoltage(0);
+
+arms::chassis::move({52,30}, 80, arms::ASYNC);
+
+intakeMotor.moveVoltage(12000);
+
+arms::chassis::waitUntilFinished(1);
+pros::delay(100);
+intakeMotor.moveVoltage(0);
+
+arms::chassis::turn(-90, 90);
+
+
+arms::chassis::move({2,32}, 100, arms::THRU | arms::RELATIVE | arms::ASYNC);
+flap.set_value(true);
+flap.set_value(true);
+
+intakeMotor.moveVoltage(-12000);
+
+arms::chassis::waitUntilFinished(2);
+arms::chassis::move({-10,0}, 100, arms::RELATIVE | arms:: THRU);
 
 }
 
-
-void closeSidePush() {
-
-
-}
-
-void farSideFullScore() {
-}
 
 void skillsroutine() {
+  arms::odom::reset({0, 0}, 225);
 
-int cataCounter = 0;
-while (cataCounter < 46) {
-  cataMotor.moveVoltage(12000);
-  if (cataLimit.isPressed()) {
-    cataCounter += 1;
-  }
-  pros::delay(10);
+  move({24, 12, 180}, 80, arms::REVERSE);
+
+  move({12, 12, 110}, 80);
+
+  flap.set_value(true);
+
+  int cataCounter = 0;
+  while (cataCounter < 46) {
+    cataMotor.moveVoltage(12000);
+    if (cataLimit.isPressed()) {
+      cataCounter += 1;
+      pros::delay(400);
+    }
+    pros::delay(10);
 }
+cataMotor.moveVoltage(0);
+flap.set_value(false);
+intakeMotor.setVoltageLimit(-12000);
+
+  move({-2, -40}, 100, arms::REVERSE);
+  move({-2, -96}, arms::REVERSE);
+
+  move({48, -60}, 100);
+  flap.set_value(true);
+  move({60, -96}, 100);
+  pros::delay(100);
+  move({75, -60}, 100, arms::REVERSE);
+  move({80, -96}, 100);
+
+  move({70, -60}, 100, arms::REVERSE);
+
+  move({70, -96}, 100);
+
+  arms::chassis::tank(-100,-100);
+  intakeMotor.moveVoltage(0);
+  pros::delay(500);
+  arms::chassis::tank(0,0);
+
 }
 
 
-void autonomous() { ////8deg off
-CloseSideAWP();
- //   arms::odom::reset({0, 0}, 0);
- // arms::chassis::move(24, arms::ASYNC);
-
-  //    arms::odom::reset({0, 0}, 0);
-//arms::chassis::turn(90);
-//arms::chassis::move({12, 0}, 50);
-
-//pros::delay(500);
-//arms::chassis::move({0, 0}, 50);
-
-//arms::chassis::turn(0);
-//pros::delay(500);
-//arms::chassis::turn(90);
 
 
-//arms::chassis::move({6, 0}, 50);
-
-}
-
-void Aautonomous() {
+void autonomous() {
 if(arms::selector::auton == 1) {
   CloseSideAWP();
 }
@@ -175,6 +261,7 @@ if(arms::selector::auton == 2) {
   CloseSideBlitz();
 }
 if(arms::selector::auton == 3) {
+  skillsroutine();
 }
 
 if(arms::selector::auton == -1) {
@@ -223,13 +310,9 @@ void setIntake() {
 		intakeMotor.moveVoltage(-12000);
 	}
 	else {
-		if (intakeSensor.get() < 50) {              //If the sensor sees a triball in the intake, stop intake
-			intakeMotor.moveVoltage(0);
-		}
-  else {
-	  intakeMotor.moveVoltage(12000);   //By default keep intake on
+	  intakeMotor.moveVoltage(000);   //By default keep intake 
 	  }
-	}
+
 }
 
 
@@ -283,7 +366,6 @@ void opcontrol() {
     pros::lcd::set_text(2, "H: " + std::to_string(arms::odom::getHeading()));
     pros::lcd::set_text(3, "Left: " + std::to_string(arms::odom::getLeftEncoder()));
     pros::lcd::set_text(4, "Right: " + std::to_string(arms::odom::getRightEncoder()));
-    pros::lcd::set_text(5, "Middle: " + std::to_string(arms::odom::getMiddleEncoder()));
 
     pros::delay(10);
 }

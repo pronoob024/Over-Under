@@ -10,8 +10,8 @@ namespace arms {
 #define ODOM_DEBUG 0
 
 // Negative numbers mean reversed motor
-#define LEFT_MOTORS -1, -2, -3
-#define RIGHT_MOTORS 4, 5, 6
+#define LEFT_MOTORS -1, -2, 3
+#define RIGHT_MOTORS 4, 5, -6
 #define GEARSET pros::E_MOTOR_GEAR_600 // RPM of chassis motors
 
 // Ticks per inch
@@ -25,7 +25,7 @@ namespace arms {
 	0 // Distance from middle wheel to the robot turning center
 
 // Sensors
-#define IMU_PORT 0                           // Port 0 for disabled
+#define IMU_PORT 10                           // Port 0 for disabled
 #define ENCODER_PORTS 0, 0, 0                // Port 0 for disabled,
 #define EXPANDER_PORT 0                      // Port 0 for disabled
 #define ENCODER_TYPE arms::odom::ENCODER_ROTATION // The type of encoders
@@ -43,10 +43,10 @@ namespace arms {
 #define TRACKING_KP 60 // point tracking turning strength
 #define ANGULAR_KP 10
 #define ANGULAR_KI 0
-#define ANGULAR_KD 25
+#define ANGULAR_KD 27
 #define MIN_ERROR                                                              \
 	5 // Minimum distance to target before angular componenet is disabled
-#define LEAD_PCT .6         // Go-to-pose lead distance ratio (0-1)
+#define LEAD_PCT .7//.6         // Go-to-pose lead distance ratio (0-1)
 #define MIN_LINEAR_SPEED 0  // Minimum speed for linear movements
 #define MIN_ANGULAR_SPEED 0 // Minimum speed for angular movements
 
