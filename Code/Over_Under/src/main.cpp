@@ -71,7 +71,7 @@ ControllerButton hang(ControllerDigital::X);
 
 
 
-void CloseSideAWP() {
+void CloseSideAWPNO() {
 arms::odom::reset({0, 0}, 25);
 
 arms::chassis::move({23,16, 180}, 80); //Push preload to goal
@@ -96,30 +96,57 @@ arms::chassis::move({-1,-39, -90}, 80); //Drive to contact elevation bar
 
 }
 
+void CloseSideAWP() {
+  arms::odom::reset({0, 0}, 225);   //Reset
+
+  move({22, 12}, 100, arms::REVERSE);   //Push preload into goal
+  move({30, 12}, 100, arms::REVERSE);   //Push preload into goal
+
+ // move({21, 16}, 40);
+  move({1, 1}, 40, arms::ASYNC);    //Drive to matchload bar
+  pros::delay(500);
+    flap.set_value(true);               //Open flaps
+
+  arms::chassis::waitUntilFinished(1);
+  flap.set_value(true);               //Open flaps
+  pros::delay(250);
+  arms::chassis::turn(-90, 45);   //Remove triball from match load area
+  flap.set_value(false);             //Close flaps
+  intakeMotor.moveVoltage(-12000);
+
+  move({-5,-37, -90}, 80);   //Drive to elevation bar
+}
+
 
 void FarSideAWP() {
-arms::odom::reset({-4, 24}, 90);
-
-arms::chassis::move({-4, 26}, 60);    //Pick up triball
-
+arms::odom::reset({0, 0}, 90);
 intakeMotor.moveVoltage(12000);
-pros::delay(750);
-intakeMotor.moveVoltage(0);
 
-arms::chassis::move({-4, 0}, 80, arms::REVERSE);    //Driving to goal
+arms::chassis::move({-4, 28}, 60);    //Pick up triball
 
-arms::chassis::move({22,-24, 180}, 80, arms::REVERSE);   //Drive into goal
+pros::delay(550);
+intakeMotor.moveVoltage(3000);
 
-arms::chassis::move({-2,0}, 80, arms::RELATIVE);    //Back away
+arms::chassis::move({-4, 8}, 80, arms::REVERSE);    //Driving to goal
 
-arms::chassis::move({4,0}, 80, arms::RELATIVE | arms::ASYNC);
+arms::chassis::turn(-75, 40);
+
+arms::chassis::move({4,-24}, 80);   //Drive into goal
+
+arms::chassis::move({31,-33, 0}, 80, arms::ASYNC);   //Drive into goal
+flap.set_value(true);
+
 intakeMotor.moveVoltage(-12000);
+arms::chassis::waitUntilFinished(1);
+flap.set_value(false);
 
-arms::chassis::waitUntilFinished(2);
+arms::chassis::move({-8,0}, 80, arms::RELATIVE | arms::REVERSE);    //Back away
 
 
-arms::chassis::move({-5, 0}, 80, arms::REVERSE | arms::RELATIVE);
-intakeMotor.moveVoltage(0);
+
+
+
+pros::delay(5000);
 
 ////////////////////
 
@@ -210,7 +237,7 @@ arms::chassis::move({-10,0}, 100, arms::RELATIVE | arms:: THRU);
 void skillsroutine() {
   arms::odom::reset({0, 0}, 225);
 
-  move({24, 12, 180}, 80, arms::REVERSE);
+  move({24, 13, 180}, 80, arms::REVERSE);
 
   move({12, 12, 110}, 80);
 
@@ -224,10 +251,11 @@ void skillsroutine() {
       pros::delay(400);
     }
     pros::delay(10);
-}
-cataMotor.moveVoltage(0);
-flap.set_value(false);
-intakeMotor.setVoltageLimit(-12000);
+  }
+
+  cataMotor.moveVoltage(0);
+  flap.set_value(false);
+  intakeMotor.setVoltageLimit(-12000);
 
   move({-2, -40}, 100, arms::REVERSE);
   move({-2, -96}, arms::REVERSE);
@@ -255,13 +283,12 @@ intakeMotor.setVoltageLimit(-12000);
 
 void autonomous() {
 if(arms::selector::auton == 1) {
-  CloseSideAWP();
+  FarSideAWP();
 }
 if(arms::selector::auton == 2) {
   CloseSideBlitz();
 }
 if(arms::selector::auton == 3) {
-  skillsroutine();
 }
 
 if(arms::selector::auton == -1) {
@@ -271,6 +298,10 @@ if(arms::selector::auton == -2) {
   FarSideBlitz();
 }
 if(arms::selector::auton == -3) {
+}
+
+if(arms::selector::auton == 0) {
+  skillsroutine();
 }
 
 } 
@@ -310,7 +341,7 @@ void setIntake() {
 		intakeMotor.moveVoltage(-12000);
 	}
 	else {
-	  intakeMotor.moveVoltage(000);   //By default keep intake 
+	  intakeMotor.moveVoltage(0);   //By default keep intake off
 	  }
 
 }

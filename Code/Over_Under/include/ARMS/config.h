@@ -43,7 +43,7 @@ namespace arms {
 #define TRACKING_KP 60 // point tracking turning strength
 #define ANGULAR_KP 10
 #define ANGULAR_KI 0
-#define ANGULAR_KD 27
+#define ANGULAR_KD 30
 #define MIN_ERROR                                                              \
 	5 // Minimum distance to target before angular componenet is disabled
 #define LEAD_PCT .7//.6         // Go-to-pose lead distance ratio (0-1)
