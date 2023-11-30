@@ -41,9 +41,9 @@ namespace arms {
 #define LINEAR_KI 0
 #define LINEAR_KD 3
 #define TRACKING_KP 60 // point tracking turning strength
-#define ANGULAR_KP 10
+#define ANGULAR_KP 4
 #define ANGULAR_KI 0
-#define ANGULAR_KD 30
+#define ANGULAR_KD 26
 #define MIN_ERROR                                                              \
 	5 // Minimum distance to target before angular componenet is disabled
 #define LEAD_PCT .7//.6         // Go-to-pose lead distance ratio (0-1)
@@ -51,7 +51,7 @@ namespace arms {
 #define MIN_ANGULAR_SPEED 0 // Minimum speed for angular movements
 
 // Auton selector configuration constants
-#define AUTONS "AWP", "BLITZ", "Do Nothing" // Names of autonomi, up to 10
+#define AUTONS "CLOSEAWP", "CLOSEDISRUPT", "FARAWP", "FARBLITZ", "Do Nothing" // Names of autonomi, up to 10
 #define HUE 0     // Color of theme from 0-359(H part of HSV)
 #define DEFAULT 1 // Default auton selected
 
