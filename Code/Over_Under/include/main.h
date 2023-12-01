@@ -75,6 +75,13 @@ void opcontrol(void);
 #endif
 
 #ifdef __cplusplus
+#include "subsystemHeaders/CloseSideAWP.hpp"
+#include "subsystemHeaders/CloseSideBlitz.hpp"
+#include "subsystemHeaders/FarSideAWP.hpp"
+#include "subsystemHeaders/FarSideBlitz.hpp"
+#include "subsystemHeaders/SkillsRoutine.hpp"
+#include "subsystemHeaders/SkillsRoutine.hpp"
+#include "subsystemHeaders/Globals.hpp"
 /**
  * You can add C++-only headers here
  */
