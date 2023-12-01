@@ -14,11 +14,10 @@ void CloseSideBlitz() {
   arms::chassis::move({22, 12}, 100, arms::REVERSE);   //Push preload into goal
   arms::chassis::move({30, 12}, 100, arms::REVERSE);   //Push preload into goal
 
-  //move({1, 1}, 40, arms::ASYNC);    //Drive to matchload bar  ACTUAL WORKING LINE
-    arms::chassis::move({1, 1, 225}, 40, arms::ASYNC);    //Drive to matchload bar
+arms::chassis::move({1, 1}, 40, arms::ASYNC);    //Drive to matchload bar
 
   pros::delay(500);
-    flap.set_value(true);               //Open flaps
+  flap.set_value(true);               //Open flaps
 
   arms::chassis::waitUntilFinished(1);
   pros::delay(250);

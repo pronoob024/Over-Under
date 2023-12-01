@@ -16,21 +16,27 @@ cataMotor.moveVoltage(0);       //Stop catapult
 flap.set_value(false);
 intakeMotor.setVoltageLimit(-12000);
 
-arms::chassis::move({5, -25}, 70, arms::REVERSE);      //Drive to other side
-arms::chassis::move({5, -85}, 70, arms::REVERSE);      //Drive to other side
+arms::chassis::move({5, -25}, 100, arms::REVERSE);      //Drive to other side
+arms::chassis::move({5, -85}, 100, arms::REVERSE);      //Drive to other side
 pros::delay(50); 
+
+arms::chassis::move({30, -105}, 80, arms::REVERSE);      //Side goal slam
+
+arms::chassis::move({24, -85}, 80, arms::ASYNC);      //Drive away from goal
+flap.set_value(true);
+arms::chassis::waitUntilFinished(0);
 
 arms::chassis::move({55, -54}, 90);    //Drive to center bar
 flap.set_value(true);
 
-arms::chassis::move({60, -90}, 90);    //Goal slam 1
+arms::chassis::move({57, -90}, 90);    //Goal slam 1
 pros::delay(100);
 flap.set_value(false);
 
 arms::chassis::move({80, -60}, 90, arms::REVERSE); //Back up
 
 flap.set_value(true);
-arms::chassis::move({75, -95}, 90);    //Goal slam 2
+arms::chassis::move({74, -95}, 90);    //Goal slam 2
 
 arms::chassis::move({70, -60}, 90, arms::REVERSE);   //Back up
 

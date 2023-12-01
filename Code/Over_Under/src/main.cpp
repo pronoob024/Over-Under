@@ -92,8 +92,8 @@ if(arms::selector::auton == 0) {
 
 
 void resetCata() {
-if (cataShoot.isPressed()){                           //If catapult shoot button is pressed
-  while (cataLimit.isPressed()) {                     //If the catapult is pushing down the limit switch
+if (cataShoot.isPressed()){                       //If catapult shoot button is pressed
+  while (cataLimit.isPressed()) {                 //If the catapult is pushing down the limit switch
     cataMotor.moveVoltage(12000);       //Move the catapult to shoot it
     pros::delay(350);               //Delay to ensure catapult shoots
     }
@@ -109,12 +109,12 @@ cataMotor.moveVoltage(0);   //Stop the catapult once the limit switch is pressed
 
 
 void setCata() {
-    if (cataShootManual.isPressed()) {            
-        cataMotor.moveVoltage(12000);
-    }
-    else {
-      cataMotor.moveVoltage(0);
-    }
+  if (cataShootManual.isPressed()) {        //Run catapult motor while button is pressed
+    cataMotor.moveVoltage(12000);
+  }
+  else {
+    cataMotor.moveVoltage(0);
+  }
 }
 
 
@@ -128,7 +128,6 @@ void setIntake() {
 	else {
 	  intakeMotor.moveVoltage(0);   //By default keep intake off
 	  }
-
 }
 
 
@@ -144,12 +143,12 @@ void setFlap() {
 
 void setHang() {
   if (hang.isPressed()) {
-    hangLeft.set_value(true);
-    hangRight.set_value(true);
+    hangLeft.set_value(true);   //Raise left hang
+    hangRight.set_value(true);  //Raise right hang
   }
   else {
-    hangLeft.set_value(false);
-    hangRight.set_value(false);
+    hangLeft.set_value(false);  //Lower left hang
+    hangRight.set_value(false); //Lower right hang
   }
 }
 
@@ -171,20 +170,20 @@ void setHang() {
 void opcontrol() {
 if(arms::selector::auton == 0) {
 }
-	while (true) {
-    arms::chassis::tank(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y),
-                        master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
-    resetCata();
-    setCata();
-    setIntake();
-    setFlap();
-    setHang();
-    pros::lcd::set_text(0, "X: " + std::to_string(arms::odom::getPosition().x));
-    pros::lcd::set_text(1, "Y: " + std::to_string(arms::odom::getPosition().y));
-    pros::lcd::set_text(2, "H: " + std::to_string(arms::odom::getHeading()));
-    pros::lcd::set_text(3, "Left: " + std::to_string(arms::odom::getLeftEncoder()));
-    pros::lcd::set_text(4, "Right: " + std::to_string(arms::odom::getRightEncoder()));
+while (true) {
+  arms::chassis::tank(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y),
+                      master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
+  resetCata();
+  setCata();
+  setIntake();
+  setFlap();
+  setHang();
+  pros::lcd::set_text(0, "X: " + std::to_string(arms::odom::getPosition().x));
+  pros::lcd::set_text(1, "Y: " + std::to_string(arms::odom::getPosition().y));
+  pros::lcd::set_text(2, "H: " + std::to_string(arms::odom::getHeading()));
+  pros::lcd::set_text(3, "Left: " + std::to_string(arms::odom::getLeftEncoder()));
+  pros::lcd::set_text(4, "Right: " + std::to_string(arms::odom::getRightEncoder()));
 
-    pros::delay(10);
+  pros::delay(10);
 }
 }
