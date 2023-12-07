@@ -53,9 +53,8 @@ void competition_initialize() {
 
 void autonomous() {
 if(arms::selector::auton == 1) {
- // FarSideBlitz();
  //CloseSideAWP();
- skillsroutine();
+ FarSideAWP();
 }
 if(arms::selector::auton == 2) {
   CloseSideBlitz();
