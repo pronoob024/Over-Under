@@ -54,7 +54,8 @@ void competition_initialize() {
 void autonomous() {
 if(arms::selector::auton == 1) {
  //CloseSideAWP();
- FarSideAWP();
+ //FarSideAWP();
+ CloseSideBlitz();
 }
 if(arms::selector::auton == 2) {
   CloseSideBlitz();
@@ -125,7 +126,7 @@ void setIntake() {
 		intakeMotor.moveVoltage(-12000);
 	}
 	else {
-	  intakeMotor.moveVoltage(0);   //By default keep intake off
+	  intakeMotor.moveVoltage(6000);   //By default keep intake off
 	  }
 }
 

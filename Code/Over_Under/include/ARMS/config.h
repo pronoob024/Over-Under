@@ -51,7 +51,7 @@ namespace arms {
 #define MIN_ANGULAR_SPEED 0 // Minimum speed for angular movements
 
 // Auton selector configuration constants
-#define AUTONS "CLOSEAWP", "CLOSEDISRUPT", "FARAWP", "FARBLITZ", "Do Nothing" // Names of autonomi, up to 10
+#define AUTONS "clAWP", "clDRPT", "fAWP", "fBLTZ", "non" // Names of autonomi, up to 10
 #define HUE 0     // Color of theme from 0-359(H part of HSV)
 #define DEFAULT 1 // Default auton selected
 

@@ -18,5 +18,5 @@ flap.set_value(false);             //Close flaps
 intakeMotor.moveVoltage(-12000);
 pros::delay(250);
 
-arms::chassis::move({-5,-39.2, -90}, 80);   //Drive to elevation bar
+arms::chassis::move({-5,-39.2}, 80);   //Drive to elevation bar
 }
