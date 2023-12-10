@@ -29,10 +29,10 @@ intakeMotor.moveVoltage(12000);
 
 arms::chassis::move({31,35, 90}, 60);   //Close triball
 pros::delay(10);
-intakeMotor.moveVoltage(3000);    //Finish picking up Close triball
+intakeMotor.moveVoltage(9000);    //Finish picking up Close triball
 
-arms::chassis::move({20,5}, 90, arms::REVERSE);    //Back away from Close triball
-arms::chassis::move({2,-6}, 90, arms::REVERSE);    //Position next to bar
+arms::chassis::move({20,5}, 80, 5, arms::REVERSE);    //Back away from Close triball
+arms::chassis::move({2,-6}, 80, arms::REVERSE);    //Position next to bar
 
 arms::chassis::turn(-45, 50);   //Turn parallel to match load bar
 pros::delay(300);
@@ -50,5 +50,8 @@ arms::chassis::turn(0);   //Turn to goal
 
 pros::delay(500);
 arms::chassis::move({25, -2}, 100, arms::RELATIVE);   //Score
-arms::chassis::move({-15,0}, 100, arms::RELATIVE | arms::REVERSE);   //Back away
+arms::chassis::tank(-100,-100);   //Back up
+intakeMotor.moveVoltage(0);
+pros::delay(500);
+arms::chassis::tank(0,0);   //Stop backing up
 }

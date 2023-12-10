@@ -8,7 +8,7 @@ arms::chassis::move({30, 12}, 100, arms::REVERSE);   //Push preload into goal
 
 arms::chassis::move({14, 13, 120}, 70);    //Move to loading position
 
-arms::chassis::turn(125);           /////////
+arms::chassis::turn(123);           /////////
 
 flap.set_value(true);   //Open flap for match loading
 

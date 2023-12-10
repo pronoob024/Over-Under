@@ -7,10 +7,9 @@ flap.set_value(true);    //Slap
 pros::delay(75);
 flap.set_value(false);
 
-arms::chassis::move({8, 5}, 90);   //Get around bar
+arms::chassis::move({8, 5}, 90, 2);   //Get around bar    //TESTING WITH EXIT ERROR
 
-
-  arms::chassis::move({42, -16}, 90);   //go to center
+  arms::chassis::move({42, -16}, 90, 2);   //go to center
   arms::chassis::move({47.3, -16}, 70);   
   arms::chassis::turn(0);
 pros::delay(55);
@@ -37,5 +36,7 @@ arms::chassis::move({1, 22}, 40, arms::ASYNC);    //Drive to matchload bar
   intakeMotor.moveVoltage(-12000);
   pros::delay(500);
 
-  arms::chassis::move({-5,-18}, 70);   //Drive to elevation bar
+  arms::chassis::move({-5,-13}, 70);   //Drive to elevation bar
+
+  arms::chassis::move({-5,-18.5}, 70);   //Drive to elevation bar
 }
