@@ -3,7 +3,7 @@
 void CloseSideAWP() {
 arms::odom::reset({0, 0}, 225);   //Reset
 
-arms::chassis::move({22, 12}, 100, 1, arms::REVERSE);   //Push preload into goal        //TEST WITH EXIT ERROR
+arms::chassis::move({22, 12}, 100, 1, arms::REVERSE);   //Push preload into goal
 arms::chassis::move({30, 12}, 100, arms::REVERSE);   //Push preload into goal
 
 arms::chassis::move({1, 1}, 40, arms::ASYNC);    //Drive to matchload bar

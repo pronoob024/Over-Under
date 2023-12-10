@@ -13,10 +13,10 @@ pros::Controller master (pros::E_CONTROLLER_MASTER);    //Defines the controller
 
 ControllerButton cataShoot(ControllerDigital::R1);
 ControllerButton cataShootManual(ControllerDigital::R2);
-//
+
 ControllerButton intakeIN(ControllerDigital::L1);
 ControllerButton intakeOUT(ControllerDigital::L2);
-//
+
 ControllerButton flapToggle(ControllerDigital::down);
 
 ControllerButton hang(ControllerDigital::B);

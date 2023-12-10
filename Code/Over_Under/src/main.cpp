@@ -2,11 +2,9 @@
 #include "ARMS/chassis.h"
 #include "ARMS/flags.h"
 #include "okapi/api/device/motor/abstractMotor.hpp"
-#include "gif-pros/gifclass.hpp"
-#include "okapi/impl/control/async/asyncMotionProfileControllerBuilder.hpp"
+//#include "gif-pros/gifclass.hpp"    //Kept for future use
 #include "okapi/impl/device/button/controllerButton.hpp"
 #include "okapi/impl/device/controllerUtil.hpp"
-#include "okapi/impl/device/distanceSensor.hpp"
 #include "pros/adi.hpp"
 #include "pros/misc.h"
 #include "pros/rtos.hpp"
@@ -22,10 +20,9 @@
  */
 
 //using arms::chassis::move;
-
 void initialize() {
   arms::init();
- // pros::lcd::initialize();
+ // pros::lcd::initialize();    //Kept in case of debugging
 }
 
 /**
@@ -45,17 +42,12 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-//Gif gif("/usd/bk.gif", lv_scr_act());
 }
-
-
 
 
 void autonomous() {
 if(arms::selector::auton == 1) {
  CloseSideAWP();
- //FarSideAWP();
- //CloseSideBlitz();
 }
 if(arms::selector::auton == 2) {
   CloseSideBlitz();
@@ -168,8 +160,6 @@ void setHang() {
 
 
 void opcontrol() {
-if(arms::selector::auton == 0) {
-}
 while (true) {
   arms::chassis::tank(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y),
                       master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
@@ -178,11 +168,11 @@ while (true) {
   setIntake();
   setFlap();
   setHang();
-  pros::lcd::set_text(0, "X: " + std::to_string(arms::odom::getPosition().x));
-  pros::lcd::set_text(1, "Y: " + std::to_string(arms::odom::getPosition().y));
-  pros::lcd::set_text(2, "H: " + std::to_string(arms::odom::getHeading()));
-  pros::lcd::set_text(3, "Left: " + std::to_string(arms::odom::getLeftEncoder()));
-  pros::lcd::set_text(4, "Right: " + std::to_string(arms::odom::getRightEncoder()));
+//  pros::lcd::set_text(0, "X: " + std::to_string(arms::odom::getPosition().x));    //Kept for debugging
+//  pros::lcd::set_text(1, "Y: " + std::to_string(arms::odom::getPosition().y));
+//  pros::lcd::set_text(2, "H: " + std::to_string(arms::odom::getHeading()));
+//  pros::lcd::set_text(3, "Left: " + std::to_string(arms::odom::getLeftEncoder()));
+//  pros::lcd::set_text(4, "Right: " + std::to_string(arms::odom::getRightEncoder()));
 
   pros::delay(10);
 }
