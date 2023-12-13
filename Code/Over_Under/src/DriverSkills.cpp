@@ -1,6 +1,15 @@
 #include "main.h"
 
-void skillsroutine() {
+void setFlapSkills() {
+  if (flapToggle.isPressed()) {   //If flap button is pressed
+    flap.set_value(true);   //Extend flap
+  }
+  else {
+    flap.set_value(false);      //Otherwise keep flap closed
+  }
+}
+
+void driverSkills() {
 arms::odom::reset({0, 0}, 225);   //Reset
 
 arms::chassis::move({22, 12}, 100, arms::REVERSE);   //Push preload into goal
@@ -61,21 +70,14 @@ arms::chassis::move({70, -60}, 90, arms::REVERSE);   //Back up
 flap.set_value(true);
 arms::chassis::move({70, -94}, 90);    //Goal slam 3
 flap.set_value(false);
-arms::chassis::move({118, -70}, 80, arms::REVERSE);   //Back up to far position
+arms::chassis::move({70, -70}, 80, arms::REVERSE);   //Back up to far position
 
-arms::chassis::turn(125);
-pros::delay(75);
+intakeMotor.moveVoltage(-10000);
 
-
-arms::chassis::move({121, -130}, 80, arms::REVERSE);   //Move to goal position
-arms::chassis::turn(0);
-pros::delay(150);
-
-arms::chassis::tank(-100,-100);   //Slam into side of goal
-intakeMotor.moveVoltage(0);
-pros::delay(1000);
-
-arms::chassis::tank(100,100);   //Move away from goal
-pros::delay(500);
-arms::chassis::tank(0,0);   //Stop moving away
+while (true){       //Start manual control
+    arms::chassis::tank(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y),
+                      master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
+  setFlapSkills();
+  pros::delay(10);
+}
 }

@@ -82,6 +82,7 @@ void opcontrol(void);
 #include "subsystemHeaders/SkillsRoutine.hpp"
 #include "subsystemHeaders/SkillsRoutine.hpp"
 #include "subsystemHeaders/Globals.hpp"
+#include "subsystemHeaders/DriverSkills.hpp"
 /**
  * You can add C++-only headers here
  */
