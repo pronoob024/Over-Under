@@ -163,10 +163,27 @@ void setHang() {
 //  driverSkills();
 //}
 
+int getLeftJoystick(int leftVal) {
+  return leftVal * 0.79;
+}
+
+int getRightJoystick(int rightVal) {
+  return rightVal * 0.79;
+}
+
+//int getLeftJoystick(int leftVal) {
+//  return (0.0055 * pow(leftVal, 2) + (0.3 * leftVal));
+//}
+
+//int getRightJoystick(int rightVal) {
+//  return (0.0055 * pow(rightVal, 2) + (0.3 * rightVal));
+//}
+
+
 void opcontrol() {
 while (true) {
-  arms::chassis::tank(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y),
-                      master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
+  arms::chassis::tank(getLeftJoystick(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)),
+                      getRightJoystick(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)));
   resetCata();
   setCata();
   setIntake();
@@ -177,7 +194,6 @@ while (true) {
 //  pros::lcd::set_text(2, "H: " + std::to_string(arms::odom::getHeading()));
 //  pros::lcd::set_text(3, "Left: " + std::to_string(arms::odom::getLeftEncoder()));
 //  pros::lcd::set_text(4, "Right: " + std::to_string(arms::odom::getRightEncoder()));
-
   pros::delay(10);
 }
 }

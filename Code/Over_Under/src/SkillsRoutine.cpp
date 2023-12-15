@@ -73,7 +73,7 @@ pros::delay(150);
 
 arms::chassis::tank(-100,-100);   //Slam into side of goal
 intakeMotor.moveVoltage(0);
-pros::delay(1000);
+pros::delay(750);
 
 arms::chassis::tank(100,100);   //Move away from goal
 pros::delay(500);
