@@ -22,9 +22,9 @@ arms::chassis::move({0,12}, 80, arms::REVERSE);   //Move back to goal area
 arms::chassis::turn(225);
 
 arms::chassis::move({22, 33}, 80, arms::REVERSE);   //Push preload into goal
-arms::chassis::move({30, 33}, 90, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({30, 33}, 80, arms::REVERSE);   //Push preload into goal
 
-arms::chassis::move({1, 22}, 40, arms::ASYNC);    //Drive to matchload bar
+arms::chassis::move({1, 22}, 65, arms::ASYNC);    //Drive to matchload bar
 
 pros::delay(500);
 flap.set_value(true);               //Open flaps

@@ -3,10 +3,10 @@
 void FarSideAWP() {
 arms::odom::reset({0, -12}, 135);   //Reset
 
-arms::chassis::move({22, -24}, 100, arms::REVERSE);   //Push preload into goal
-arms::chassis::move({30, -24}, 100, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({22, -21}, 100, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({33, -21}, 100, arms::REVERSE);   //Push preload into goal
 
-arms::chassis::move({24, -10});     //Move away from goal
+arms::chassis::move({22, -4});     //Move away from goal
 
 arms::chassis::move({41,31, 90}, 70);   //Close triball
 pros::delay(150);

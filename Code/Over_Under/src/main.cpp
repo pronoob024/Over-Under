@@ -44,6 +44,9 @@ void disabled() {}
 void competition_initialize() {
 }
 
+//void autonomous() {
+//  skillsroutine();
+//}
 
 void autonomous() {
 if(arms::selector::auton == 1) {
@@ -170,14 +173,6 @@ int getLeftJoystick(int leftVal) {
 int getRightJoystick(int rightVal) {
   return rightVal * 0.79;
 }
-
-//int getLeftJoystick(int leftVal) {
-//  return (0.0055 * pow(leftVal, 2) + (0.3 * leftVal));
-//}
-
-//int getRightJoystick(int rightVal) {
-//  return (0.0055 * pow(rightVal, 2) + (0.3 * rightVal));
-//}
 
 
 void opcontrol() {

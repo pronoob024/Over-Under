@@ -3,8 +3,8 @@
 void skillsroutine() {
 arms::odom::reset({0, 0}, 225);   //Reset
 
-arms::chassis::move({22, 12}, 100, arms::REVERSE);   //Push preload into goal
-arms::chassis::move({30, 12}, 100, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({22, 11}, 100, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 
 arms::chassis::move({14, 13, 120}, 70);    //Move to loading position
 
@@ -14,7 +14,7 @@ arms::chassis::turn(120, 80);           /////////
 flap.set_value(true);   //Open flap for match loading
 
 cataMotor.moveVoltage(12000);   //Match loading
-pros::delay(30000);         //30 seconds
+pros::delay(29000);         //30 seconds
 //pros::delay(1000);         //1 second //for testing
 
 cataMotor.moveVoltage(0);       //Stop catapult
@@ -44,36 +44,36 @@ intakeMotor.moveVoltage(-12000);
 arms::chassis::turn(-80, 80);
 flap.set_value(true);
 
-arms::chassis::move({63, -90}, 90);    //Goal slam 1
+arms::chassis::move({69, -90}, 90);    //Goal slam 1
 pros::delay(100);
 flap.set_value(false);
 pros::delay(200);
-arms::chassis::move({60, -66}, 90, arms::REVERSE); //Back up
-arms::chassis::move({95, -60}, 90, arms::REVERSE); //Back up
+arms::chassis::move({66, -66}, 90, arms::REVERSE); //Back up
+arms::chassis::move({101, -60}, 90, arms::REVERSE); //Back up
 
 flap.set_value(true);
-arms::chassis::move({85, -95}, 90);    //Goal slam 2
+arms::chassis::move({91, -95}, 90);    //Goal slam 2
 pros::delay(100);
 flap.set_value(false);
 
-arms::chassis::move({70, -60}, 90, arms::REVERSE);   //Back up
+arms::chassis::move({76, -60}, 90, arms::REVERSE);   //Back up
 
 flap.set_value(true);
-arms::chassis::move({70, -94}, 90);    //Goal slam 3
+arms::chassis::move({76, -94}, 90);    //Goal slam 3
 flap.set_value(false);
-arms::chassis::move({118, -70}, 80, arms::REVERSE);   //Back up to far position
+arms::chassis::move({124, -70}, 80, arms::REVERSE);   //Back up to far position
 
 arms::chassis::turn(125);
 pros::delay(75);
 
 
-arms::chassis::move({121, -130}, 80, arms::REVERSE);   //Move to goal position
+arms::chassis::move({127, -130}, 80, arms::REVERSE);   //Move to goal position
 arms::chassis::turn(0);
 pros::delay(150);
 
 arms::chassis::tank(-100,-100);   //Slam into side of goal
 intakeMotor.moveVoltage(0);
-pros::delay(750);
+pros::delay(500);
 
 arms::chassis::tank(100,100);   //Move away from goal
 pros::delay(500);

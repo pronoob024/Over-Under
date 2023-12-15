@@ -12,8 +12,8 @@ void setFlapSkills() {
 void driverSkills() {
 arms::odom::reset({0, 0}, 225);   //Reset
 
-arms::chassis::move({22, 12}, 100, arms::REVERSE);   //Push preload into goal
-arms::chassis::move({30, 12}, 100, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({22, 11}, 100, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 
 arms::chassis::move({14, 13, 120}, 70);    //Move to loading position
 
