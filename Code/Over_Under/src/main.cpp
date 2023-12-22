@@ -65,16 +65,16 @@ if(arms::selector::auton == 5) {
 }
 
 if(arms::selector::auton == -1) {
-  FarSideAWP();
+  ElimsFarSideSAFE();
 }
 if(arms::selector::auton == -2) {
-  CloseSideBlitz();
+  ElimsCloseSideBlitz();
 }
 if(arms::selector::auton == -3) {
-  FarSideAWP();
+  ElimsFarSideSAFE();
 }
 if(arms::selector::auton == -4) {
-  FarSideBlitz();
+  ElimsFarSideBlitz();
 }
 if(arms::selector::auton == -5) {
 }
@@ -140,6 +140,12 @@ void setHang() {
   if (hang.isPressed()) {
     hangLeft.set_value(true);   //Raise left hang
     hangRight.set_value(true);  //Raise right hang
+    if (!cataLimit.isPressed()) {
+      cataMotor.moveVoltage(7500);
+    }
+    else {
+      cataMotor.moveVoltage(0);
+    }
   }
   else {
     hangLeft.set_value(false);  //Lower left hang

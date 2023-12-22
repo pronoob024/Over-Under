@@ -75,14 +75,19 @@ void opcontrol(void);
 #endif
 
 #ifdef __cplusplus
-#include "subsystemHeaders/CloseSideAWP.hpp"
-#include "subsystemHeaders/CloseSideBlitz.hpp"
-#include "subsystemHeaders/FarSideAWP.hpp"
-#include "subsystemHeaders/FarSideBlitz.hpp"
+#include "subsystemHeaders/qualAutons/CloseSideAWP.hpp"
+#include "subsystemHeaders/qualAutons/CloseSideBlitz.hpp"
+#include "subsystemHeaders/qualAutons/FarSideAWP.hpp"
+#include "subsystemHeaders/qualAutons/FarSideBlitz.hpp"
 #include "subsystemHeaders/SkillsRoutine.hpp"
 #include "subsystemHeaders/SkillsRoutine.hpp"
 #include "subsystemHeaders/Globals.hpp"
 #include "subsystemHeaders/DriverSkills.hpp"
+#include "subsystemHeaders/elimsAutons/CloseSideSAFE.hpp"
+#include "subsystemHeaders/elimsAutons/CloseSideBlitz.hpp"
+#include "subsystemHeaders/elimsAutons/FarSideSAFE.hpp"
+#include "subsystemHeaders/elimsAutons/FarSideBlitz.hpp"
+
 /**
  * You can add C++-only headers here
  */
