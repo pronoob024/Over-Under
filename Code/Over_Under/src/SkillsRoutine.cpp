@@ -44,7 +44,8 @@ intakeMotor.moveVoltage(-12000);
 arms::chassis::turn(-80, 80);
 flap.set_value(true);
 
-arms::chassis::move({60, -88}, 100);    //Goal slam 1
+arms::chassis::move({60, -87}, 100);    //Goal slam 1
+arms::chassis::move({60, -89}, 70);    //Goal slam 1
 pros::delay(100);
 flap.set_value(false);
 pros::delay(200);
@@ -55,7 +56,6 @@ arms::chassis::turn(-95, 80);
 
 flap.set_value(true);
 arms::chassis::move({82, -65}, 70);    //Goal slam 2
-
 arms::chassis::move({77, -88}, 90);    //Goal slam 2
 pros::delay(100);
 flap.set_value(false);
@@ -65,15 +65,20 @@ arms::chassis::move({68, -60}, 90, arms::REVERSE);   //Back up
 flap.set_value(true);
 arms::chassis::move({66, -90}, 100);    //Goal slam 3
 flap.set_value(false);
-arms::chassis::move({122, -68}, 80, arms::REVERSE);   //Back up to far position
 
-arms::chassis::turn(125);
+arms::chassis::move({100, -55}, 80, arms::REVERSE);   //Back up to far position
+
+arms::chassis::turn(135);
 pros::delay(75);
-
-
-arms::chassis::move({127, -130}, 80, arms::REVERSE);   //Move to goal position
-arms::chassis::turn(0);
+arms::chassis::move({120, -75}, 80, arms::REVERSE);   //Push triballs
+arms::chassis::turn(180);
 pros::delay(150);
+arms::chassis::move({160, -75}, 80, arms::REVERSE);   //Back up to wall
+
+arms::chassis::turn(45);
+
+arms::chassis::move({130, -105}, 80, arms::REVERSE);   //Back up to goal position
+arms::chassis::turn(0, 70);
 
 arms::chassis::tank(-100,-100);   //Slam into side of goal
 intakeMotor.moveVoltage(0);
