@@ -9,6 +9,14 @@ void setFlapSkills() {
   }
 }
 
+int getLeftJoystickSkills(int leftVal) {
+  return leftVal * 0.79;
+}
+
+int getRightJoystickSkills(int rightVal) {
+  return rightVal * 0.79;
+}
+
 void driverSkills() {
 arms::odom::reset({0, 0}, 225);   //Reset
 
@@ -36,47 +44,13 @@ arms::chassis::turn(45, 75);
 
 arms::chassis::move({6, -25}, 80, arms::REVERSE);      //Drive to other side
 arms::chassis::move({6, -82}, 80, arms::REVERSE);      //Drive to other side
-pros::delay(50); 
 
-arms::chassis::move({22, -102}, 80, arms::REVERSE);      //Side goal slam
-arms::chassis::move({40, -102}, 80, arms::REVERSE);      //Side goal slam
-
-pros::delay(250);
-
-arms::chassis::move({33, -90}, 80);     //Drive away from goal
-
-arms::chassis::move({55, -55});    //Drive to center bar
-
-intakeMotor.moveVoltage(-12000);
-
-
-arms::chassis::turn(-80, 80);
-flap.set_value(true);
-
-arms::chassis::move({63, -90}, 90);    //Goal slam 1
-pros::delay(100);
-flap.set_value(false);
-pros::delay(200);
-arms::chassis::move({60, -66}, 90, arms::REVERSE); //Back up
-arms::chassis::move({95, -60}, 90, arms::REVERSE); //Back up
-
-flap.set_value(true);
-arms::chassis::move({85, -95}, 90);    //Goal slam 2
-pros::delay(100);
-flap.set_value(false);
-
-arms::chassis::move({70, -60}, 90, arms::REVERSE);   //Back up
-
-flap.set_value(true);
-arms::chassis::move({70, -94}, 90);    //Goal slam 3
-flap.set_value(false);
-arms::chassis::move({70, -70}, 80, arms::REVERSE);   //Back up to far position
 
 intakeMotor.moveVoltage(-10000);
 
 while (true){       //Start manual control
-    arms::chassis::tank(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y),
-                      master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
+  arms::chassis::tank(getLeftJoystickSkills(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)),
+                      getRightJoystickSkills(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)));
   setFlapSkills();
   pros::delay(10);
 }
