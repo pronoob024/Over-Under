@@ -12,8 +12,8 @@ extern ADIButton cataLimit;
 extern Controller controller;        //Defines the controller for Okapi
 extern pros::Controller master;    //Defines the controller for driving
 
-extern ControllerButton cataShoot;
-extern ControllerButton cataShootManual;
+extern ControllerButton cataShootFast;
+extern ControllerButton cataShootSlow;
 //
 extern ControllerButton intakeIN;
 extern ControllerButton intakeOUT;

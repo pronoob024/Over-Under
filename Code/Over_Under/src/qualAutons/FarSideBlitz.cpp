@@ -27,18 +27,18 @@ arms::chassis::move({50,5}, 100, arms::REVERSE);    //Back away from goal
 flap.set_value(false);
 intakeMotor.moveVoltage(12000);
 
-arms::chassis::move({31,35, 90}, 60);   //Close triball
+arms::chassis::move({29,33, 90}, 60);   //Close triball
 pros::delay(10);
 intakeMotor.moveVoltage(9000);    //Finish picking up close triball
 
 arms::chassis::move({20,5}, 80, 5, arms::REVERSE);    //Back away from close triball
-arms::chassis::move({2,-6}, 80, arms::REVERSE);    //Position next to match load bar
+arms::chassis::move({2,-9}, 80, arms::REVERSE);    //Position next to match load bar
 
-arms::chassis::turn(-45, 50);   //Turn parallel to match load bar
+arms::chassis::turn(-45, 70);   //Turn parallel to match load bar
 pros::delay(300);
 flap.set_value(true);
 intakeMotor.moveVoltage(-12000);
-arms::chassis::move({11, -17}, 50);   //Drive to match load triball
+arms::chassis::move({11, -27}, 50);   //Drive to match load triball
 
 arms::chassis::turn(-0);    //Remove match load triball
 

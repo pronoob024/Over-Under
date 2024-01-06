@@ -44,7 +44,7 @@ void disabled() {}
 void competition_initialize() {
 }
 
-//void autonomous() {
+//void autonomous() {    //FOR AUTON SKILLS IF NO FIELD CONTROLLER IS AVAILABLE, CONFIRM COMMENTED OR DELETED AFTER AUTON SKILLS IS RUN
 //  skillsroutine();
 //}
 
@@ -86,26 +86,19 @@ if(arms::selector::auton == 0) {
 
 
 
-void resetCata() {
-if (cataShoot.isPressed()){                       //If catapult shoot button is pressed
-  while (cataLimit.isPressed()) {                 //If the catapult is pushing down the limit switch
-    cataMotor.moveVoltage(12000);       //Move the catapult to shoot it
-    pros::delay(350);               //Delay to ensure catapult shoots
-    }
-  while (!cataLimit.isPressed()) {                //While the catapult limit switch is not pressed
-    cataMotor.moveVoltage(10000);    //Move the catapult down
-      arms::chassis::tank(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y),
-                        master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
-  pros::delay(10);      // ^ Allows for driving while the catapult is going down
+void setCataFast() {
+  if (cataShootFast.isPressed()) {        //Run catapult motor while button is pressed
+    cataMotor.moveVoltage(12000);
   }
-cataMotor.moveVoltage(0);   //Stop the catapult once the limit switch is pressed
+  else {
+    cataMotor.moveVoltage(0);
   }
 }
 
 
-void setCata() {
-  if (cataShootManual.isPressed()) {        //Run catapult motor while button is pressed
-    cataMotor.moveVoltage(12000);
+void setCataSlow() {
+  if (cataShootSlow.isPressed()) {        //Run catapult motor while button is pressed
+    cataMotor.moveVoltage(10000);
   }
   else {
     cataMotor.moveVoltage(0);
@@ -173,11 +166,13 @@ void setHang() {
 //}
 
 int getLeftJoystick(int leftVal) {
-  return leftVal * 0.79;
+//  return (pow(leftVal, 3) / 20500);
+return (leftVal * .79);
 }
 
 int getRightJoystick(int rightVal) {
-  return rightVal * 0.79;
+//  return (pow(rightVal, 3) / 20500);
+return (rightVal * .79);
 }
 
 
@@ -185,8 +180,8 @@ void opcontrol() {
 while (true) {
   arms::chassis::tank(getLeftJoystick(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)),
                       getRightJoystick(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)));
-  resetCata();
-  setCata();
+  setCataFast();
+  setCataSlow();
   setIntake();
   setFlap();
   setHang();

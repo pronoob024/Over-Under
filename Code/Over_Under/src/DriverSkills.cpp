@@ -23,15 +23,14 @@ arms::odom::reset({0, 0}, 225);   //Reset
 arms::chassis::move({22, 11}, 100, arms::REVERSE);   //Push preload into goal
 arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 
-arms::chassis::move({14, 13, 120}, 70);    //Move to loading position
+arms::chassis::move({13, 13, 117}, 70);    //Move to loading position
 
-//arms::chassis::turn(123);           /////////
-arms::chassis::turn(120, 80);           /////////
+arms::chassis::turn(117, 80);           /////////
 
 flap.set_value(true);   //Open flap for match loading
 
 cataMotor.moveVoltage(12000);   //Match loading
-pros::delay(30000);         //30 seconds
+pros::delay(29000);         //30 seconds
 //pros::delay(1000);         //1 second //for testing
 
 cataMotor.moveVoltage(0);       //Stop catapult
@@ -42,9 +41,8 @@ intakeMotor.moveVoltage(-4000);
 arms::chassis::turn(45, 75);
 
 
-arms::chassis::move({6, -25}, 80, arms::REVERSE);      //Drive to other side
-arms::chassis::move({6, -82}, 80, arms::REVERSE);      //Drive to other side
-
+arms::chassis::move({2, -25}, 80, arms::REVERSE);      //Drive to other side
+arms::chassis::move({4, -82}, 80, arms::REVERSE);      //Drive to other side
 
 intakeMotor.moveVoltage(-10000);
 

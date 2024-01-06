@@ -6,10 +6,9 @@ arms::odom::reset({0, 0}, 225);   //Reset
 arms::chassis::move({22, 11}, 100, arms::REVERSE);   //Push preload into goal
 arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 
-arms::chassis::move({13, 13, 120}, 70);    //Move to loading position
+arms::chassis::move({13, 13, 117}, 70);    //Move to loading position
 
-//arms::chassis::turn(123);           /////////
-arms::chassis::turn(118, 80);           /////////
+arms::chassis::turn(117, 80);           /////////
 
 flap.set_value(true);   //Open flap for match loading
 
@@ -29,8 +28,8 @@ arms::chassis::move({2, -25}, 80, arms::REVERSE);      //Drive to other side
 arms::chassis::move({4, -82}, 80, arms::REVERSE);      //Drive to other side
 pros::delay(50); 
 
-arms::chassis::move({22, -108}, 80, arms::REVERSE);      //Side goal slam
-arms::chassis::move({40, -108}, 80, arms::REVERSE);      //Side goal slam
+arms::chassis::move({22, -104}, 80, arms::REVERSE);      //Side goal slam
+arms::chassis::move({40, -104}, 80, arms::REVERSE);      //Side goal slam
 
 pros::delay(250);
 
@@ -77,12 +76,12 @@ arms::chassis::move({160, -75}, 80, arms::REVERSE);   //Back up to wall
 
 arms::chassis::turn(45);
 
-arms::chassis::move({130, -105}, 80, arms::REVERSE);   //Back up to goal position
+arms::chassis::move({130, -108}, 80, arms::REVERSE);   //Back up to goal position
 arms::chassis::turn(0, 70);
 
 arms::chassis::tank(-100,-100);   //Slam into side of goal
 intakeMotor.moveVoltage(0);
-pros::delay(500);
+pros::delay(800);
 
 arms::chassis::tank(100,100);   //Move away from goal
 pros::delay(500);
