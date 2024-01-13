@@ -23,7 +23,7 @@ arms::chassis::move({62,32}, 70);   //Far triball
 
 arms::chassis::move({62,29, 90}, 70, arms::REVERSE);   //Far triball back up
 arms::chassis::turn(-90);
-flap.set_value(true);
+//flap.set_value(true);
 
 arms::chassis::move({57,-10}, 70, arms::ASYNC);    //Goal slam
 pros::delay(500);
@@ -31,5 +31,5 @@ intakeMotor.moveVoltage(-12000);
 arms::chassis::waitUntilFinished(1);
 
 arms::chassis::move({50,5}, 100, arms::REVERSE);    //Back away from goal
-flap.set_value(false);
+//flap.set_value(false);
 }

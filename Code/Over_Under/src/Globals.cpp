@@ -1,11 +1,13 @@
 #include "main.h"
 
-pros::ADIDigitalOut flap('B');
-pros::ADIDigitalOut hangLeft('C');
-pros::ADIDigitalOut hangRight('D');
+pros::ADIDigitalOut flapL('D');
+pros::ADIDigitalOut flapR('C');
+
+pros::ADIDigitalOut hangLeft('G');
+pros::ADIDigitalOut hangRight('H');
 
 Motor cataMotor(8);
-Motor intakeMotor(-7);
+Motor intakeMotor(7);
 ADIButton cataLimit('A');
 
 Controller controller;        //Defines the controller for Okapi

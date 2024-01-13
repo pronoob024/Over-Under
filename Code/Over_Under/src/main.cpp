@@ -12,6 +12,7 @@
 #include "ARMS/config.h"
 
 
+
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -96,35 +97,40 @@ void setCataFast() {
 }
 
 
-void setCataSlow() {
-  if (cataShootSlow.isPressed()) {        //Run catapult motor while button is pressed
-    cataMotor.moveVoltage(10000);
-  }
-  else {
-    cataMotor.moveVoltage(0);
-  }
-}
+//void setCataSlow() {
+//  if (cataShootSlow.isPressed()) {        //Run catapult motor while button is pressed
+//    cataMotor.moveVoltage(10000);
+//  }
+//  else {
+//    cataMotor.moveVoltage(0);
+//  }
+//}
 
 
 void setIntake() {
 	if (intakeIN.isPressed()) {
-		intakeMotor.moveVoltage(12000);   //If intake button is pressed then intake
+		intakeMotor.moveVoltage(-12000);   //If intake button is pressed then intake
 	}
 	else if (intakeOUT.isPressed()) {             //If outtake button is pressed then outtake
-		intakeMotor.moveVoltage(-12000);
+		intakeMotor.moveVoltage(12000);
 	}
 	else {
-	  intakeMotor.moveVoltage(6000);   //By default keep intake off
+	  intakeMotor.moveVoltage(-6000);   //By default keep intake off
 	  }
 }
 
-
-void setFlap() {
+pros::ADIDigitalOut flapL('D');
+pros::ADIDigitalOut flapR('C');
+void setFlaps() {
   if (flapToggle.isPressed()) {   //If flap button is pressed
-    flap.set_value(true);   //Extend flap
+    flapL.set_value(true);   //Extend flap
+    flapR.set_value(true);   //Extend flap
+
   }
   else {
-    flap.set_value(false);      //Otherwise keep flap closed
+    flapL.set_value(false);      //Otherwise keep flap closed
+    flapR.set_value(false);   //Extend flap
+
   }
 }
 
@@ -176,14 +182,17 @@ return (rightVal * .79);
 }
 
 
+//void opcontrol() {
+//  driverSkills();
+//}
+
 void opcontrol() {
 while (true) {
   arms::chassis::tank(getLeftJoystick(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)),
                       getRightJoystick(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)));
   setCataFast();
-  setCataSlow();
   setIntake();
-  setFlap();
+  setFlaps();
   setHang();
 //  pros::lcd::set_text(0, "X: " + std::to_string(arms::odom::getPosition().x));    //Kept for debugging
 //  pros::lcd::set_text(1, "Y: " + std::to_string(arms::odom::getPosition().y));

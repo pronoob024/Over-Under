@@ -9,12 +9,12 @@ arms::chassis::move({32, 11, 180}, 60, arms::REVERSE);   //Push preload into goa
 arms::chassis::move({1, 1}, 65, arms::ASYNC);    //Drive to matchload bar
 
 pros::delay(500);
-flap.set_value(true);               //Open flaps
+//flap.set_value(true);               //Open flaps
 arms::chassis::waitUntilFinished(0);
 
 pros::delay(250);
 arms::chassis::turn(-90, 65);   //Remove triball from match load area
-flap.set_value(false);             //Close flaps
+//flap.set_value(false);             //Close flaps
 intakeMotor.moveVoltage(-12000);
 pros::delay(250);
 
