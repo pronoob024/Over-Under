@@ -1,7 +1,9 @@
 #pragma once
 #include "main.h"
 
-extern pros::ADIDigitalOut flap;
+extern pros::ADIDigitalOut flapL;
+extern pros::ADIDigitalOut flapR;
+
 extern pros::ADIDigitalOut hangLeft;
 extern pros::ADIDigitalOut hangRight;
 

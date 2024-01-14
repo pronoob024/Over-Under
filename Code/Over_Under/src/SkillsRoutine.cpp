@@ -3,10 +3,6 @@
 
 void skillsroutine() {
 
-pros::ADIDigitalOut flapL('D');
-pros::ADIDigitalOut flapR('C');
-
-
 arms::odom::reset({0, 0}, 225);   //Reset
 
 arms::chassis::move({22, 11}, 100, arms::REVERSE);   //Push preload into goal

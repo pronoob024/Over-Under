@@ -119,8 +119,6 @@ void setIntake() {
 	  }
 }
 
-pros::ADIDigitalOut flapL('D');
-pros::ADIDigitalOut flapR('C');
 void setFlaps() {
   if (flapToggle.isPressed()) {   //If flap button is pressed
     flapL.set_value(true);   //Extend flap
