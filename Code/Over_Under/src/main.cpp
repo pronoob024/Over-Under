@@ -115,7 +115,7 @@ void setIntake() {
 		intakeMotor.moveVoltage(12000);
 	}
 	else {
-	  intakeMotor.moveVoltage(-6000);   //By default keep intake off
+	  intakeMotor.moveVoltage(12000);   //By default keep intake off
 	  }
 }
 
