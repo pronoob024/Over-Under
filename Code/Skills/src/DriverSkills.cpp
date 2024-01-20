@@ -17,7 +17,7 @@ void setHangSkills() {
     hangLeft.set_value(true);   //Raise left hang
     hangRight.set_value(true);  //Raise right hang
     if (!cataLimit.isPressed()) {
-      cataMotor.moveVoltage(7500);
+      cataMotor.moveVoltage(9500);
     }
     else {
       cataMotor.moveVoltage(0);
@@ -35,6 +35,12 @@ void setCataSkills() {
   }
   else {
     cataMotor.moveVoltage(0);
+  }
+}
+
+void setIntakeSkills() {
+  if (intakeOUT.isPressed()) {
+    intakeMotor.moveVoltage(-12000);
   }
 }
 
@@ -59,7 +65,7 @@ arms::chassis::turn(123, 80);           /////////
 flapL.set_value(true);   //Open flap for match loading
 
 cataMotor.moveVoltage(12000);   //Match loading
-pros::delay(20000);         //30 seconds
+pros::delay(2000);         //20 seconds
 //pros::delay(1000);         //1 second //for testing
 while(cataShootFast.isPressed()) {        //Run catapult motor while button is pressed
     cataMotor.moveVoltage(12000);
@@ -67,7 +73,7 @@ while(cataShootFast.isPressed()) {        //Run catapult motor while button is p
 cataMotor.moveVoltage(0);       //Stop catapult
 
 flapL.set_value(false);
-intakeMotor.moveVoltage(-12000);
+intakeMotor.moveVoltage(12000);
 
 
 while (true){       //Start manual control
@@ -76,6 +82,7 @@ while (true){       //Start manual control
   setFlapSkills();
   setHangSkills();
   setCataSkills();
+  setIntakeSkills();
   pros::delay(10);
 }
 }

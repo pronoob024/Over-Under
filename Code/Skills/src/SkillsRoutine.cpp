@@ -42,7 +42,7 @@ arms::chassis::move({33, -90}, 80);     //Drive away from goal
 
 //flapR.set_value(true);
 arms::chassis::move({50, -57});    //Drive to center bar //55 to 43
-arms::chassis::move({62, -56});    //Drive to center bar //55 to 43
+arms::chassis::move({58, -56});    //Drive to center bar //55 to 43
 
 intakeMotor.moveVoltage(-12000);
 
@@ -52,13 +52,14 @@ arms::chassis::turn(-80, 80);
 flapR.set_value(true);
 
 arms::chassis::move({62, -87}, 100);    //Goal slam 1
-arms::chassis::move({62 -89}, 70);    //Goal slam 1
+//arms::chassis::move({62 -89}, 70);    //Goal slam 1
 //arms::chassis::move({62 -86}, 70, arms::REVERSE);    //Goal slam 1
 //arms::chassis::move({62 -89}, 100);    //Goal slam 1
 
 pros::delay(100);
 flapR.set_value(false);
 flapL.set_value(false);
+pros::delay(250);
 arms::chassis::move({60, -55}, 90, arms::REVERSE); //Back up
 flapL.set_value(true);
 arms::chassis::move({95, -55}, 90); //Back up //100,-55
@@ -68,18 +69,18 @@ arms::chassis::turn(-110, 80);
 flapL.set_value(true);
 flapR.set_value(true);
 
-arms::chassis::move({80, -62}, 70);    //Goal slam 2
+arms::chassis::move({90, -62}, 70);    //Goal slam 2
 arms::chassis::move({80, -88}, 90);    //Goal slam 2
 pros::delay(100);
 flapL.set_value(false);
 flapR.set_value(false);
 
-arms::chassis::move({65, -60}, 90, arms::REVERSE);   //Back up
+arms::chassis::move({57, -60}, 90, arms::REVERSE);   //Back up
 
 flapL.set_value(true);
 flapR.set_value(true);
 
-arms::chassis::move({64, -90}, 100);    //Goal slam 3
+arms::chassis::move({64, -93}, 100);    //Goal slam 3
 flapL.set_value(false);
 flapR.set_value(false);
 
@@ -92,7 +93,7 @@ arms::chassis::turn(180);
 pros::delay(150);
 arms::chassis::move({142, -75}, 80, arms::REVERSE);   //Back up to wall
 
-arms::chassis::turn(45);
+arms::chassis::turn(55);
 
 arms::chassis::move({130, -111}, 80, arms::REVERSE);   //Back up to goal position
 arms::chassis::turn(0, 70);

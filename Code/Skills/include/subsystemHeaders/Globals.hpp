@@ -17,7 +17,6 @@ extern pros::Controller master;    //Defines the controller for driving
 extern ControllerButton cataShootFast;
 extern ControllerButton cataShootSlow;
 //
-extern ControllerButton intakeIN;
 extern ControllerButton intakeOUT;
 //
 extern ControllerButton flapToggle;
