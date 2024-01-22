@@ -84,26 +84,20 @@ arms::chassis::move({64, -93}, 100);    //Goal slam 3
 flapL.set_value(false);
 flapR.set_value(false);
 
-arms::chassis::move({100, -55}, 80, arms::REVERSE);   //Back up to far position
+arms::chassis::move({48, -60}, 90, arms::REVERSE);   //Back up
 
-arms::chassis::turn(135);
-pros::delay(75);
-arms::chassis::move({120, -75}, 80, arms::REVERSE);   //Push triballs
-arms::chassis::turn(180);
-pros::delay(150);
-arms::chassis::move({142, -75}, 80, arms::REVERSE);   //Back up to wall
+flapL.set_value(true);
+flapR.set_value(true);
+arms::chassis::move({50, -93}, 100);    //Goal slam 4
 
-arms::chassis::turn(55);
+pros::delay(100);
 
-arms::chassis::move({130, -111}, 80, arms::REVERSE);   //Back up to goal position
-arms::chassis::turn(0, 70);
+flapL.set_value(false);
+flapR.set_value(false);
 
-arms::chassis::tank(-100,-100);   //Slam into side of goal
-intakeMotor.moveVoltage(0);
-pros::delay(800);
-
-arms::chassis::tank(100,100);   //Move away from goal
+arms::chassis::tank(-100,-100); //Back away
 pros::delay(500);
-arms::chassis::tank(0,0);   //Stop moving away
+arms::chassis::tank(0,0); //Stop moving away
+
 }
 
