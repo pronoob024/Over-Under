@@ -132,6 +132,13 @@ void setFlaps() {
   }
 }
 
+void setBackFlap() {
+  if (backFlapToggle.isPressed()) {
+    backFlap.set_value(true);
+  }
+  else {backFlap.set_value(false);
+  }
+}
 
 void setHang() {
   if (hang.isPressed()) {
@@ -192,6 +199,7 @@ while (true) {
   setIntake();
   setFlaps();
   setHang();
+  setBackFlap();
 //  pros::lcd::set_text(0, "X: " + std::to_string(arms::odom::getPosition().x));    //Kept for debugging
 //  pros::lcd::set_text(1, "Y: " + std::to_string(arms::odom::getPosition().y));
 //  pros::lcd::set_text(2, "H: " + std::to_string(arms::odom::getHeading()));

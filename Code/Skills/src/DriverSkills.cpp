@@ -53,14 +53,11 @@ int getRightJoystickSkills(int rightVal) {
 }
 
 void driverSkills() {
-arms::odom::reset({0, 0}, 225);   //Reset
+arms::odom::reset({0, 0}, 45);   //Reset
 
-arms::chassis::move({22, 11}, 100, arms::REVERSE);   //Push preload into goal
-arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({15, 12}, 100);    //Move to loading position
 
-arms::chassis::move({13, 12, 123}, 70);    //Move to loading position
-
-arms::chassis::turn(123, 80);           /////////
+arms::chassis::turn(111, 80);           /////////121
 
 flapL.set_value(true);   //Open flap for match loading
 

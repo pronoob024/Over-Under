@@ -15,7 +15,9 @@ namespace arms {
 #define GEARSET pros::E_MOTOR_GEAR_600 // RPM of chassis motors
 
 // Ticks per inch
-#define TPI 48.435        // Encoder ticks per inch of forward robot movement
+//#define TPI 48.435        // Encoder ticks per inch of forward robot movement
+
+#define TPI 49.53        // Encoder ticks per inch of forward robot movement
 #define MIDDLE_TPI 0 // Ticks per inch for the middle wheel
 
 // Tracking wheel distances
@@ -37,13 +39,13 @@ namespace arms {
 #define SETTLE_THRESH_LINEAR .5 // amount of linear movement for settling
 #define SETTLE_THRESH_ANGULAR 1 // amount of angular movement for settling
 #define SETTLE_TIME 150         // amount of time to count as settled
-#define LINEAR_KP 10
+#define LINEAR_KP 6
 #define LINEAR_KI 0
-#define LINEAR_KD 3
+#define LINEAR_KD 9
 #define TRACKING_KP 60 // point tracking turning strength //Decrease to make turns smoother
 #define ANGULAR_KP 4
 #define ANGULAR_KI 0
-#define ANGULAR_KD 26
+#define ANGULAR_KD 34
 #define MIN_ERROR                                                              \
 	5 // Minimum distance to target before angular componenet is disabled
 #define LEAD_PCT .7//.6         // Go-to-pose lead distance ratio (0-1)

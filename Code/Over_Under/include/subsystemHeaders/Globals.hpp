@@ -3,6 +3,7 @@
 
 extern pros::ADIDigitalOut flapL;
 extern pros::ADIDigitalOut flapR;
+extern pros::ADIDigitalOut backFlap;
 
 extern pros::ADIDigitalOut hangLeft;
 extern pros::ADIDigitalOut hangRight;
@@ -21,5 +22,6 @@ extern ControllerButton intakeIN;
 extern ControllerButton intakeOUT;
 //
 extern ControllerButton flapToggle;
+extern ControllerButton backFlapToggle;
 
 extern ControllerButton hang;

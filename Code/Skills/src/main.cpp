@@ -23,7 +23,7 @@
 //using arms::chassis::move;
 void initialize() {
   arms::init();
- // pros::lcd::initialize();    //Kept in case of debugging
+  pros::lcd::initialize();    //Kept in case of debugging
 }
 
 /**
@@ -66,5 +66,10 @@ skillsroutine();
  */
 
 void opcontrol() {
+//  arms::odom::reset({0,0}, 0);
+//arms::chassis::turn(90, 100);
+//pros::delay(150);
+//arms::chassis::turn(0, 100);
 driverSkills();
+
 }
