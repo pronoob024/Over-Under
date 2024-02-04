@@ -66,10 +66,16 @@ skillsroutine();
  */
 
 void opcontrol() {
-//  arms::odom::reset({0,0}, 0);
-//arms::chassis::turn(90, 100);
-//pros::delay(150);
-//arms::chassis::turn(0, 100);
+
+
+//arms::chassis::waitUntilFinished(0);
+//pros::delay(1000);
+//arms::chassis::move({0,0}, 100, arms::ASYNC);
+
+
+
+
+
 driverSkills();
 
 }
