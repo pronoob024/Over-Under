@@ -16,12 +16,6 @@ void setHangSkills() {
   if (hang.isPressed()) {
     hangLeft.set_value(true);   //Raise left hang
     hangRight.set_value(true);  //Raise right hang
-    if (!cataLimit.isPressed()) {
-      cataMotor.moveVoltage(9500);
-    }
-    else {
-      cataMotor.moveVoltage(0);
-    }
   }
   else {
     hangLeft.set_value(false);  //Lower left hang
@@ -72,6 +66,14 @@ cataMotor.moveVoltage(0);       //Stop catapult
 flapL.set_value(false);
 intakeMotor.moveVoltage(12000);
 
+pros::Task lowerCata( []{
+    pros::delay(20000);
+    while (!cataLimit.isPressed()) {
+    cataMotor.moveVoltage(12000);
+    pros::delay(20);
+    }
+cataMotor.moveVoltage(0);
+});
 
 while (true){       //Start manual control
   arms::chassis::tank(getLeftJoystickSkills(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)),
