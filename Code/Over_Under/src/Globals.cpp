@@ -14,12 +14,11 @@ ADIButton cataLimit('G');
 Controller controller;        //Defines the controller for Okapi
 pros::Controller master (pros::E_CONTROLLER_MASTER);    //Defines the controller for driving
 
-ControllerButton cataShootFast(ControllerDigital::R1);
+ControllerButton shootCata(ControllerDigital::R1);
 
-ControllerButton intakeIN(ControllerDigital::L1);
-ControllerButton intakeOUT(ControllerDigital::L2);
+ControllerButton intakeOUT(ControllerDigital::L1);
 
-ControllerButton flapToggle(ControllerDigital::R2);
-ControllerButton backFlapToggle(ControllerDigital::down);
+ControllerButton flapToggle(ControllerDigital::down);
+ControllerButton backFlapToggle(ControllerDigital::R2);
 
 ControllerButton hang(ControllerDigital::B);

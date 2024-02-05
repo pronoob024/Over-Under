@@ -45,9 +45,6 @@ void disabled() {}
 void competition_initialize() {
 }
 
-//void autonomous() {    //FOR AUTON SKILLS IF NO FIELD CONTROLLER IS AVAILABLE, CONFIRM COMMENTED OR DELETED AFTER AUTON SKILLS IS RUN
-//  skillsroutine();
-//}
 
 void autonomous() {
 if(arms::selector::auton == 1) {
@@ -81,14 +78,13 @@ if(arms::selector::auton == -5) {
 }
 
 if(arms::selector::auton == 0) {
-  skillsroutine();
 }
 } 
 
 
 
-void setCataFast() {
-  if (cataShootFast.isPressed()) {        //Run catapult motor while button is pressed
+void setCata() {
+  if (shootCata.isPressed()) {        //Run catapult motor while button is pressed
     cataMotor.moveVoltage(12000);
   }
   else {
@@ -96,23 +92,9 @@ void setCataFast() {
   }
 }
 
-
-//void setCataSlow() {
-//  if (cataShootSlow.isPressed()) {        //Run catapult motor while button is pressed
-//    cataMotor.moveVoltage(10000);
-//  }
-//  else {
-//    cataMotor.moveVoltage(0);
-//  }
-//}
-
-
 void setIntake() {
-	if (intakeIN.isPressed()) {
+	if (intakeOUT.isPressed()) {
 		intakeMotor.moveVoltage(-12000);   //If intake button is pressed then intake
-	}
-	else if (intakeOUT.isPressed()) {             //If outtake button is pressed then outtake
-		intakeMotor.moveVoltage(12000);
 	}
 	else {
 	  intakeMotor.moveVoltage(12000);   //By default keep intake off
@@ -123,12 +105,10 @@ void setFlaps() {
   if (flapToggle.isPressed()) {   //If flap button is pressed
     flapL.set_value(true);   //Extend flap
     flapR.set_value(true);   //Extend flap
-
   }
   else {
     flapL.set_value(false);      //Otherwise keep flap closed
     flapR.set_value(false);   //Extend flap
-
   }
 }
 
@@ -172,10 +152,6 @@ void setHang() {
  */
 
 
-//void opcontrol() {    //FOR DRIVER SKILLS ONLY, CONFIRM COMMENTED OR DELETED AFTER DRIVER SKILLS IS RUN
-//  driverSkills();
-//}
-
 int getLeftJoystick(int leftVal) {
 //  return (pow(leftVal, 3) / 20500);
 return (leftVal * .79);
@@ -186,16 +162,11 @@ int getRightJoystick(int rightVal) {
 return (rightVal * .79);
 }
 
-
-//void opcontrol() {
-//  driverSkills();
-//}
-
 void opcontrol() {
 while (true) {
   arms::chassis::tank(getLeftJoystick(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)),
                       getRightJoystick(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)));
-  setCataFast();
+  setCata();
   setIntake();
   setFlaps();
   setHang();
