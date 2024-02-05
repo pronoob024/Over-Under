@@ -1,67 +1,56 @@
 #include "main.h"
 
 void FarSideBlitz() {
-arms::odom::reset({0, -5});   //Reset
+arms::odom::reset({0, 0}, 0);   //Reset
 
 flapR.set_value(true);    //Slap
-//pros::delay(75);
 
-intakeMotor.moveVoltage(12000);
-
-arms::chassis::move({56,27}, 100, arms::ASYNC);  //Far triball
+arms::chassis::move({46, 26}, 100, arms::ASYNC);  //Far triball
 pros::delay(75);
 flapR.set_value(false);
 intakeMotor.moveVoltage(12000);
 arms::chassis::waitUntilFinished(0);
-//pros::delay(100);
-intakeMotor.moveVoltage(1000);    //Finish picking up Far triball
+intakeMotor.moveVoltage(5000);    //Finish picking up Far triball
 
-arms::chassis::turn(-90, 90);   //Turn to goal
+arms::chassis::turn(-90, 100);   //Turn to goal
 flapL.set_value(true);
 flapR.set_value(true);
 
 intakeMotor.moveVoltage(-12000);
-pros::delay(75);
 
-arms::chassis::move({47,-6}, 100, arms::ASYNC);    //Goal slam
-arms::chassis::waitUntilFinished(1);
+arms::chassis::move({46,-5}, 100);    //Goal slam
 
-arms::chassis::move({50,5}, 100, arms::REVERSE);    //Back away from goal
 flapL.set_value(false);
 flapR.set_value(false);
 
+arms::chassis::move({40,5}, 100);    //Back away from goal
 intakeMotor.moveVoltage(12000);
 
-arms::chassis::move({28,33, 90}, 60);   //Close triball
+arms::chassis::move({31, 25}, 100);    //Close triball
 pros::delay(10);
-intakeMotor.moveVoltage(9000);    //Finish picking up close triball
+intakeMotor.moveVoltage(9000);
 
-arms::chassis::move({20,5}, 80, 5, arms::REVERSE);    //Back away from close triball
-arms::chassis::move({3,-7}, 80, arms::REVERSE);    //Position next to match load bar
-
-arms::chassis::turn(-45, 70);   //Turn parallel to match load bar
-pros::delay(300);
-flapR.set_value(true);
+arms::chassis::move({12, -9, 90}, 100, arms::REVERSE);      //Move away from close triball
+arms::turn({-90, 100});
 intakeMotor.moveVoltage(-12000);
-arms::chassis::move({13, -1.5}, 70, arms::RELATIVE);   //Drive to match load triball
 
+arms::chassis::move({-8, 7}, 90);    //Move to elevation bar alignment
+intakeMotor.moveVoltage(12000);
+arms::chassis::move({-7, 28}, 80);    //Elevation bar triball
+intakeMotor.moveVoltage(5000);
 
+arms::chassis::move({-3.0, -18.0}, 100, arms::REVERSE);     //Position next to match load bar
+backFlap.set_value(true);
+arms::chassis::move({5.0, -27.0}, 100, arms::REVERSE);      //Remove match load triball
+backFlap.set_value(false);
+arms::chassis::move({21.0, -26.0}, 100, arms::REVERSE);     //Back goal slam
 
-//arms::chassis::turn(-0);    //Remove match load triball
+arms::chassis::move({14.0, -26.0}, 100);
+arms::chassis::turn({0, 100});
+intakeMotor.moveVoltage(-12000);
+arms::chassis::move({21.0, -26.0}, 100);        //Final goal slam
 
-flapR.set_value(false);
-//arms::chassis::turn(-45);   //Turn parallel to match load bar
-
-arms::chassis::move({7, -2.5}, 100, arms::RELATIVE);    //Drive closer to fleld perimiter
-arms::chassis::turn(0);   //Turn to goal
-
-pros::delay(500);
-arms::chassis::move({21, -2}, 100, arms::RELATIVE);   //Score
-arms::chassis::move({-15, 0}, 100, arms::RELATIVE | arms::REVERSE);   //Score
-arms::chassis::turn(180);
-arms::chassis::move({-25, 5}, 100, arms::RELATIVE | arms::REVERSE);   //Score
-
-arms::chassis::tank(100,100);   //Back up
+arms::chassis::tank(-100, -100);   //Back up
 intakeMotor.moveVoltage(0);
 pros::delay(400);
 arms::chassis::tank(0,0);   //Stop backing up
