@@ -23,6 +23,11 @@ void setHangSkills() {
   }
 }
 
+int hangToggle = 0;
+
+
+
+
 void setCataSkills() {
   if (cataShootFast.isPressed()) {        //Run catapult motor while button is pressed
     cataMotor.moveVoltage(12000);
@@ -75,11 +80,26 @@ pros::Task lowerCata( []{
 cataMotor.moveVoltage(0);
 });
 
+pros::Task hangTask( [] {
+  while (hang.isPressed()) {
+    hangLeft.set_value(true);   //Raise left hang
+    hangRight.set_value(true);  //Raise right hang
+    hangToggle = 1;
+  }
+  pros::delay(1000);
+  while (hang.isPressed()) {
+    if (hangToggle == 1) {
+    hangLeft.set_value(false);   //Lower left hang
+    hangRight.set_value(false);  //Lower right hang
+    }
+  }
+});
+
 while (true){       //Start manual control
   arms::chassis::tank(getLeftJoystickSkills(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)),
                       getRightJoystickSkills(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)));
   setFlapSkills();
-  setHangSkills();
+//  setHangSkills();
   setCataSkills();
   setIntakeSkills();
   pros::delay(10);

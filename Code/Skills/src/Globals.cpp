@@ -10,7 +10,7 @@ pros::ADIDigitalOut hangRight('B');
 
 Motor cataMotor(8);
 Motor intakeMotor(7);
-ADIButton cataLimit('G');
+ADIButton cataLimit('F');
 
 Controller controller;        //Defines the controller for Okapi
 pros::Controller master (pros::E_CONTROLLER_MASTER);    //Defines the controller for driving

@@ -9,14 +9,14 @@ arms::odom::reset({0, 0}, 225);   //Reset
 arms::chassis::move({20, 11}, 100, 6, arms::REVERSE);
 arms::chassis::move({26, 11}, 100, arms::REVERSE | arms::THRU);
 
-arms::chassis::move({15, 11}, 100);    //Move to loading position
+arms::chassis::move({16.5, 11}, 100);    //Move to loading position
 
-arms::chassis::turn(118, 100);           /////////121 111 114
+arms::chassis::turn(114, 100);           /////////121 111 114 118
 flapL.set_value(true);   //Open flap for match loading
 cataMotor.moveVoltage(12000);   //Match loading
 
-//pros::delay(28000);         //28 seconds
-pros::delay(1000);         //1 second //for testing
+pros::delay(28000);         //28 seconds
+//pros::delay(1000);         //1 second //for testing
 cataMotor.moveVoltage(0);       //Stop catapult
 
 flapL.set_value(false);
@@ -24,7 +24,7 @@ arms::chassis::turn(0, 100);
 intakeMotor.moveVoltage(-12000);
 
 
-arms::chassis::turn(45, 90);
+//arms::chassis::turn(45, 90);
 
 arms::chassis::move({8, -15}, 100, 6, arms::REVERSE | arms::THRU);      //Drive to other side
 
@@ -101,11 +101,11 @@ cataMotor.moveVoltage(0);
 });
 
 arms::chassis::turn(90);
-arms::chassis::move({4, -52}, 100);      //Drive to elevation bar 130
+arms::chassis::move({2, -52}, 100);      //Drive to elevation bar 130
 hangLeft.set_value(true);
 hangRight.set_value(true);
 
-arms::chassis::move({4, -32}, 100);      //Drive to elevate 131
+arms::chassis::move({2, -32}, 100);      //Drive to elevate 131
 hangLeft.set_value(false);
 hangRight.set_value(false);
 

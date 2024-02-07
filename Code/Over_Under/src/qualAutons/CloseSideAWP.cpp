@@ -4,21 +4,15 @@ void CloseSideAWP() {
 arms::odom::reset({0, 0}, 225);   //Reset
 
 arms::chassis::move({22, 11}, 100, 1, arms::REVERSE);   //Push preload into goal
-arms::chassis::move({32, 11, 180}, 60, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 
-arms::chassis::move({1, 1}, 65, arms::ASYNC);    //Drive to matchload bar
+arms::chassis::move({-4, 11}, 90);    //Drive to matchload bar
 
-pros::delay(500);
-flapR.set_value(true);               //Open flaps
-arms::chassis::waitUntilFinished(0);
-
-pros::delay(250);
-arms::chassis::turn(-90, 65);   //Remove triball from match load area
-flapR.set_value(false);             //Close flaps
+backFlap.set_value(true);
+arms::chassis::move({-9.0, 6.0}, 100, arms::REVERSE);  //Remove matchload triball
+backFlap.set_value(false);
 intakeMotor.moveVoltage(-12000);
-pros::delay(250);
 
-arms::chassis::move({-5,-34}, 80);   //Drive to elevation bar
+arms::chassis::move({-5.0, -36.0}, 100);    //Drive to elevation bar
 
-arms::chassis::move({-5,-36}, 70);   //Drive to elevation bar
 }
