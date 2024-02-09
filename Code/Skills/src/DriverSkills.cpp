@@ -21,9 +21,12 @@ void setHangSkills() {
     hangLeft.set_value(false);  //Lower left hang
     hangRight.set_value(false); //Lower right hang
   }
+  if (!cataLimit.isPressed()) {
+    cataMotor.moveVoltage(12000);
+    }
+  else {cataMotor.moveVoltage(0);}
 }
 
-int hangToggle = 0;
 
 
 
@@ -52,16 +55,18 @@ int getRightJoystickSkills(int rightVal) {
 }
 
 void driverSkills() {
-arms::odom::reset({0, 0}, 45);   //Reset
+arms::odom::reset({0, 0}, 225);   //Reset
 
-arms::chassis::move({15, 12}, 100);    //Move to loading position
+arms::chassis::move({22, 11}, 100, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 
-arms::chassis::turn(111, 80);           /////////121
+arms::chassis::move({13, 12, 123}, 90);    //Move to loading position
+arms::chassis::turn(122, 80);           /////////123
 
 flapL.set_value(true);   //Open flap for match loading
 
 cataMotor.moveVoltage(12000);   //Match loading
-pros::delay(2000);         //20 seconds
+pros::delay(19500);         //19.5 seconds
 //pros::delay(1000);         //1 second //for testing
 while(cataShootFast.isPressed()) {        //Run catapult motor while button is pressed
     cataMotor.moveVoltage(12000);
@@ -69,37 +74,16 @@ while(cataShootFast.isPressed()) {        //Run catapult motor while button is p
 cataMotor.moveVoltage(0);       //Stop catapult
 
 flapL.set_value(false);
-intakeMotor.moveVoltage(12000);
+intakeMotor.moveVoltage(-12000);
 
-pros::Task lowerCata( []{
-    pros::delay(20000);
-    while (!cataLimit.isPressed()) {
-    cataMotor.moveVoltage(12000);
-    pros::delay(20);
-    }
-cataMotor.moveVoltage(0);
-});
+arms::chassis::turn(-75);
 
-pros::Task hangTask( [] {
-  while (hang.isPressed()) {
-    hangLeft.set_value(true);   //Raise left hang
-    hangRight.set_value(true);  //Raise right hang
-    hangToggle = 1;
-  }
-  pros::delay(1000);
-  while (hang.isPressed()) {
-    if (hangToggle == 1) {
-    hangLeft.set_value(false);   //Lower left hang
-    hangRight.set_value(false);  //Lower right hang
-    }
-  }
-});
 
 while (true){       //Start manual control
   arms::chassis::tank(getLeftJoystickSkills(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)),
                       getRightJoystickSkills(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)));
   setFlapSkills();
-//  setHangSkills();
+  setHangSkills();
   setCataSkills();
   setIntakeSkills();
   pros::delay(10);
