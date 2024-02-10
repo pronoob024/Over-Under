@@ -22,7 +22,7 @@ namespace arms {
 
 // Tracking wheel distances
 #define TRACK_WIDTH                                                            \
-	9.45 // The distance between left and right wheels (or tracker wheels)
+	11.53 // The distance between left and right wheels (or tracker wheels) 9.45
 #define MIDDLE_DISTANCE                                                        \
 	0 // Distance from middle wheel to the robot turning center
 
@@ -43,9 +43,9 @@ namespace arms {
 #define LINEAR_KI 0
 #define LINEAR_KD 9
 #define TRACKING_KP 60 // point tracking turning strength //Decrease to make turns smoother
-#define ANGULAR_KP 4
+#define ANGULAR_KP 5
 #define ANGULAR_KI 0
-#define ANGULAR_KD 34
+#define ANGULAR_KD 33
 #define MIN_ERROR                                                              \
 	5 // Minimum distance to target before angular componenet is disabled
 #define LEAD_PCT .7//.6         // Go-to-pose lead distance ratio (0-1)
@@ -54,7 +54,7 @@ namespace arms {
 
 // Auton selector configuration constants
 #define AUTONS "Skills" // Names of autonomi, up to 10
-#define HUE 0     // Color of theme from 0-359(H part of HSV)
+#define HUE 238     // Color of theme from 0-359(H part of HSV)
 #define DEFAULT 1 // Default auton selected
 
 // Initializer
