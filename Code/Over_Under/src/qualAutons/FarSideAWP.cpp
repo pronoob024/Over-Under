@@ -3,49 +3,47 @@
 void FarSideAWP() {
 arms::odom::reset({0, 0}, 90);   //Reset
 
-arms::chassis::move({0, 3}, 100);
+arms::chassis::move({0, 3}, 100);   //Pick up elevation bar triball
 intakeMotor.moveVoltage(12000);
 pros::delay(500);
-arms::chassis::move({4, -36}, 90, arms::REVERSE);   //
+arms::chassis::move({4, -36}, 90, arms::REVERSE);   //Move to match load bar
 arms::chassis::turn(135, 80);
 backFlap.set_value(true);
 pros::delay(500);
-arms::chassis::move({16, -48}, 80, arms::REVERSE);   //
+arms::chassis::move({16, -48}, 80, arms::REVERSE);   //Align to matchload bar
 arms::chassis::turn(180);
 
 backFlap.set_value(false);
 
-arms::chassis::move({30, -53}, arms::REVERSE);     //Move away from goal
-arms::chassis::move({18, -57});
+arms::chassis::move({30, -53}, arms::REVERSE);     //Remove match load triball
+arms::chassis::move({18, -57});         //Goal slam
 arms::chassis::turn(0, 80);
-intakeMotor.moveVoltage(0);
-arms::chassis::move({30, -57});     //Move away from goal
+intakeMotor.moveVoltage(-12000);
+arms::chassis::move({30, -57});     //Score intake triball
 arms::chassis::move({18, -57}, arms::REVERSE);     //Move away from goal
 
-pros::delay(5000);
 
-arms::chassis::move({41,31, 90}, 70);   //Close triball
+arms::chassis::move({36,-2}, 90);   //Close triball
 pros::delay(150);
-intakeMotor.moveVoltage(3000);    //Finish picking up close triball
+intakeMotor.moveVoltage(8000);    //Finish picking up close triball
 
-arms::chassis::move({41,30}, 70, arms::REVERSE);   //Close triball back up
+arms::chassis::move({44, -16}, 90, arms::REVERSE);   //Close triball back up
 arms::chassis::turn(-70);
-arms::chassis::move({51, 10}, 90, arms::ASYNC);     //Deposit at goal
-intakeMotor.moveVoltage(-12000);
-arms::chassis::waitUntilFinished(1);
-
+intakeMotor.moveVoltage(-12000);    //Deposit triball at goal
+pros::delay(400);
 intakeMotor.moveVoltage(12000);
-arms::chassis::move({62,32}, 70);   //Far triball
 
-arms::chassis::move({62,29, 90}, 70, arms::REVERSE);   //Far triball back up
+arms::chassis::turn({62, -2}, 90);  //Turn to far triball
+arms::chassis::move({62,-2}, 90);   //Far triball
+
 arms::chassis::turn(-90);
-//flap.set_value(true);
+flapL.set_value(true);
+flapR.set_value(true);
+intakeMotor.moveVoltage(-12000)
 
-arms::chassis::move({57,-10}, 70, arms::ASYNC);    //Goal slam
-pros::delay(500);
-intakeMotor.moveVoltage(-12000);
-arms::chassis::waitUntilFinished(1);
+arms::chassis::move({62,-10}, 100);    //Goal slam
 
-arms::chassis::move({50,5}, 100, arms::REVERSE);    //Back away from goal
-//flap.set_value(false);
+flapL.set_value(false);
+flapR.set_value(false);
+arms::chassis::move({55,5}, 100, arms::REVERSE);    //Back away from goal
 }

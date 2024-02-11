@@ -1,41 +1,25 @@
 #include "main.h"
 
 void CloseSideBlitz() {
-arms::odom::reset({0, 5}, 0);   //Reset
+arms::odom::reset({0, 0}, 0);   //Reset
+intakeMotor.moveVoltage(12000);
+arms::chassis::move({43.0, -9.0}, 100); //Rush center triball
+pros::delay(100);
+arms::chassis::move({29.0, -0.0}, 100, arms::REVERSE); //Move away from center
 
-flapL.set_value(true);    //Slap
-pros::delay(75);
-flapL.set_value(false);
+arms::chassis::move({-2.0, 18.0}, 80, arms::REVERSE); //Go to matchload bar
 
-arms::chassis::move({8, 5}, 90, 2);   //Get around bar
+backFlap.set_value(true);   //Remove match load triball
+arms::chassis::turn(110, 90);
+pros::delay(200);
+backFlap.set_value(false);
+arms::chassis::turn(-90, 90);   //Turn to elevation bar
+pros::delay(200);
 
-arms::chassis::move({42, -16}, 90, 2);   //go to center
-arms::chassis::move({47.3, -16}, 70);   
-arms::chassis::turn(0);   //Align to center
-pros::delay(55);
-
-flapL.set_value(true);   //Disrupt
-pros::delay(75);
-flapL.set_value(false);
-
-arms::chassis::move({0,12}, 80, arms::REVERSE);   //Move back to goal area
-arms::chassis::turn(225);
-
-arms::chassis::move({22, 33}, 80, arms::REVERSE);   //Push preload into goal
-arms::chassis::move({30, 33}, 80, arms::REVERSE);   //Push preload into goal
-
-arms::chassis::move({1, 22}, 65, arms::ASYNC);    //Drive to matchload bar
-
-pros::delay(500);
-flapR.set_value(true);               //Open flaps
-
-arms::chassis::waitUntilFinished(1);
-pros::delay(250);
-arms::chassis::turn(-90, 45);   //Remove triball from match load area
-flapR.set_value(false);             //Close flaps
+arms::chassis::move({-8.0, 4.0}, 80);  //Align to elevation bar
 intakeMotor.moveVoltage(-12000);
-pros::delay(500);
 
-arms::chassis::move({-5,-13}, 70);   //Drive to elevation bar
-arms::chassis::move({-5,-18.5}, 70);   //Drive to elevation bar
+arms::chassis::move({-8.0, -25.0}, 75);    //Go to elevation bar
+arms::chassis::move({-8.0, -23}, 70);    //Go to elevation bar
+
 }
