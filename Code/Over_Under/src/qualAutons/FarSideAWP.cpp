@@ -1,12 +1,28 @@
 #include "main.h"
 
 void FarSideAWP() {
-arms::odom::reset({0, -12}, 135);   //Reset
+arms::odom::reset({0, 0}, 90);   //Reset
 
-arms::chassis::move({22, -21}, 100, arms::REVERSE);   //Push preload into goal
-arms::chassis::move({33, -21}, 100, arms::REVERSE);   //Push preload into goal
+arms::chassis::move({0, 3}, 100);
+intakeMotor.moveVoltage(12000);
+pros::delay(500);
+arms::chassis::move({4, -36}, 90, arms::REVERSE);   //
+arms::chassis::turn(135, 80);
+backFlap.set_value(true);
+pros::delay(500);
+arms::chassis::move({16, -48}, 80, arms::REVERSE);   //
+arms::chassis::turn(180);
 
-arms::chassis::move({22, -4});     //Move away from goal
+backFlap.set_value(false);
+
+arms::chassis::move({30, -53}, arms::REVERSE);     //Move away from goal
+arms::chassis::move({18, -57});
+arms::chassis::turn(0, 80);
+intakeMotor.moveVoltage(0);
+arms::chassis::move({30, -57});     //Move away from goal
+arms::chassis::move({18, -57}, arms::REVERSE);     //Move away from goal
+
+pros::delay(5000);
 
 arms::chassis::move({41,31, 90}, 70);   //Close triball
 pros::delay(150);

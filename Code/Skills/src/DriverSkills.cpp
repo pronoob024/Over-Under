@@ -60,14 +60,13 @@ arms::odom::reset({0, 0}, 225);   //Reset
 arms::chassis::move({22, 11}, 100, arms::REVERSE);   //Push preload into goal
 arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 
-arms::chassis::move({13, 12, 123}, 90);    //Move to loading position
+arms::chassis::move({13, 14, 122}, 90);    //Move to loading position
 arms::chassis::turn(122, 80);           /////////123
 
 flapL.set_value(true);   //Open flap for match loading
 
 cataMotor.moveVoltage(12000);   //Match loading
-pros::delay(19500);         //19.5 seconds
-//pros::delay(1000);         //1 second //for testing
+pros::delay(2000);         //Start Shooting
 while(cataShootFast.isPressed()) {        //Run catapult motor while button is pressed
     cataMotor.moveVoltage(12000);
   }
@@ -76,7 +75,7 @@ cataMotor.moveVoltage(0);       //Stop catapult
 flapL.set_value(false);
 intakeMotor.moveVoltage(-12000);
 
-arms::chassis::turn(-75);
+arms::chassis::turn(-75, arms::THRU);
 
 
 while (true){       //Start manual control
