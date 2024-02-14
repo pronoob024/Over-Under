@@ -39,7 +39,7 @@ arms::chassis::move({62,-2}, 90);   //Far triball
 arms::chassis::turn(-90);
 flapL.set_value(true);
 flapR.set_value(true);
-intakeMotor.moveVoltage(-12000)
+intakeMotor.moveVoltage(-12000);
 
 arms::chassis::move({62,-10}, 100);    //Goal slam
 

@@ -21,6 +21,6 @@ intakeMotor.moveVoltage(-12000);
 arms::chassis::move({3, -20.0}, 80);    //Drive to elevation bar
 
 arms::chassis::move({3, -43.0}, 70);    //Drive to elevation bar
-arms::chassis::move({3, -42.0}, 60, arms::REVERSE);    //Drive to elevation bar
+arms::chassis::move({3, -41.0}, 65, arms::REVERSE);    //Drive to elevation bar
 
 }

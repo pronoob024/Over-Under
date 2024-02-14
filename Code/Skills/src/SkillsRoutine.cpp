@@ -56,7 +56,7 @@ flapR.set_value(false);
 flapL.set_value(false);
 pros::delay(100);
 arms::chassis::move({60, -56}, 90, arms::REVERSE); //Back up
-arms::chassis::move({95, -54}, 90, arms::REVERSE); //Back up //100,-55   95
+arms::chassis::move({95, -56}, 90, arms::REVERSE); //Back up //100,-55   95
 
 arms::chassis::turn(-110, 80);  //Turn to slam 2
 
@@ -68,8 +68,8 @@ flapL.set_value(false);
 flapR.set_value(false);
 pros::delay(500);
 
-arms::chassis::move({70, -60}, 90, arms::REVERSE);   //Back up
-arms::chassis::move({57, -60}, 90, arms::REVERSE);   //Back up
+arms::chassis::move({70, -62}, 90, arms::REVERSE);   //Back up -60
+arms::chassis::move({57, -62}, 90, arms::REVERSE);   //Back up-60
 arms::chassis::turn(-90);       //Turn to slam 3
 
 flapL.set_value(true);
