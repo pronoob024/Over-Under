@@ -12,6 +12,8 @@ Motor cataMotor(8);
 Motor intakeMotor(7);
 ADIButton cataLimit('F');
 
+pros::Distance distanceSensor(19);
+
 Controller controller;        //Defines the controller for Okapi
 //Controller controller2;
 pros::Controller master (pros::E_CONTROLLER_MASTER);    //Defines the controller for driving

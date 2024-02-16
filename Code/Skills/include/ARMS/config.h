@@ -22,7 +22,7 @@ namespace arms {
 
 // Tracking wheel distances
 #define TRACK_WIDTH                                                            \
-	11.53 // The distance between left and right wheels (or tracker wheels) 9.45
+	9.45 //11.53 // The distance between left and right wheels (or tracker wheels) 9.45
 #define MIDDLE_DISTANCE                                                        \
 	0 // Distance from middle wheel to the robot turning center
 
@@ -43,12 +43,12 @@ namespace arms {
 #define LINEAR_KI 0
 #define LINEAR_KD 9
 #define TRACKING_KP 60 // point tracking turning strength //Decrease to make turns smoother
-#define ANGULAR_KP 5
+#define ANGULAR_KP 6
 #define ANGULAR_KI 0
 #define ANGULAR_KD 33
 #define MIN_ERROR                                                              \
 	5 // Minimum distance to target before angular componenet is disabled
-#define LEAD_PCT .7//.6         // Go-to-pose lead distance ratio (0-1)
+#define LEAD_PCT .5//.6         // Go-to-pose lead distance ratio (0-1)
 #define MIN_LINEAR_SPEED 0  // Minimum speed for linear movements
 #define MIN_ANGULAR_SPEED 0 // Minimum speed for angular movements
 

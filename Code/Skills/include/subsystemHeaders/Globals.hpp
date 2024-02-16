@@ -13,6 +13,8 @@ extern Motor cataMotor;
 extern Motor intakeMotor;
 extern ADIButton cataLimit;
 
+extern pros::Distance distanceSensor;
+
 extern Controller controller;        //Defines the controller for Okapi
 extern Controller controller2;
 extern pros::Controller master;    //Defines the controller for driving
