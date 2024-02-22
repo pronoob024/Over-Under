@@ -16,8 +16,8 @@ arms::chassis::turn(121, 80);           /////////
 //flapL.set_value(true);   //Open flap for match loading
 
 cataMotor.moveVoltage(12000);   //Match loading
-pros::delay(28000);         //30 seconds
-//pros::delay(3000);         //1 second //for testing
+//pros::delay(28000);         //30 seconds
+pros::delay(3000);         //1 second //for testing
 
 cataMotor.moveVoltage(0);       //Stop catapult
 
@@ -75,9 +75,8 @@ arms::chassis::turn(-110, 80);
 flapL.set_value(true);
 flapR.set_value(true);
 
-//arms::chassis::move({88, -66}, 75);    //Goal slam 2
 
-arms::chassis::move({72, -92}, 90);    //Goal slam 3
+arms::chassis::move({72, -103}, 100);    //Goal slam 3
 flapL.set_value(false);
 flapR.set_value(false);
 pros::delay(100);
@@ -86,24 +85,26 @@ pros::delay(100);
 
 
 
-arms::chassis::move({72, -83}, 90, arms::REVERSE | arms::ASYNC);   //Back up to far position
-while (!cataLimit.isPressed()) {        //Lowering cata to prepart for hang
+arms::chassis::move({72, -90}, 90, arms::REVERSE);   //Back up to far position
+
+
+
+arms::chassis::move({125, -96}, 100);      //Drive to match load bar
+arms::chassis::turn(-45);
+flapR.set_value(true);
+arms::chassis::move({110, -117}, 100);    //Goal slam side
+arms::chassis::move({92, -117}, 100);    //Goal slam side
+arms::chassis::move({110, -117}, 100, arms::REVERSE);    //Goal slam side
+arms::chassis::move({92, -117}, 100);    //Goal slam side
+
+flapR.set_value(false);
+arms::chassis::move({120, -80}, 100, arms::REVERSE | arms::ASYNC);      //Drive to elevate
+while (!cataLimit.isPressed()) {        //Lowering cata to prepare for hang
     cataMotor.moveVoltage(10000);
 }
 cataMotor.moveVoltage(0);
 arms::chassis::waitUntilFinished(0);
 
-
-arms::chassis::move({125, -94}, 100);      //Drive to elevation bar
-arms::chassis::turn(-45);
-flapR.set_value(true);
-arms::chassis::move({110, -108}, 100);    //Goal slam side
-arms::chassis::move({92, -111}, 100);    //Goal slam side
-arms::chassis::move({110, -111}, 100, arms::REVERSE);    //Goal slam side
-arms::chassis::move({92, -111}, 100);    //Goal slam side
-
-flapR.set_value(false);
-arms::chassis::move({120, -80}, 100, arms::REVERSE);      //Drive to elevate
 
 arms::chassis::turn(120, 80);   //Turn to elevation bar
 pros::delay(80);

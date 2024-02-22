@@ -6,6 +6,9 @@ void setFlapSkills() {
     flapR.set_value(true);   //Extend flap
 
   }
+  else if (Lflap.isPressed()) {
+    flapL.set_value(true);
+  }
   else {
     flapL.set_value(false);      //Otherwise keep flap closed
     flapR.set_value(false);      //Otherwise keep flap closed
@@ -60,7 +63,7 @@ arms::odom::reset({0, 0}, 225);   //Reset
 arms::chassis::move({22, 11}, 100, arms::REVERSE);   //Push preload into goal
 arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 
-arms::chassis::move({13, 12, 123}, 75);    //Move to loading position
+arms::chassis::move({13, 11, 123}, 75);    //Move to loading position
 
 arms::chassis::turn(121, 80);           /////////123
 

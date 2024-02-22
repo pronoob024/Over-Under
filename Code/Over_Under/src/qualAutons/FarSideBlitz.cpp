@@ -29,7 +29,7 @@ arms::chassis::move({35, 25}, 90);    //Close triball
 pros::delay(10);
 
 //arms::chassis::move({-1.0, -16.0}, 90, arms::REVERSE);      //Remove match load triball
-arms::chassis::move({7, 25}, 80, arms::REVERSE)
+arms::chassis::move({7, -29}, 80, arms::REVERSE);
 
 backFlap.set_value(true);
 //arms::chassis::move({16, -34.5}, 75, arms::REVERSE);      //Remove match load triball 32

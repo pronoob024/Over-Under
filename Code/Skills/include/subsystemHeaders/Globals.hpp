@@ -16,9 +16,7 @@ extern ADIButton cataLimit;
 extern pros::Distance distanceSensor;
 
 extern Controller controller;        //Defines the controller for Okapi
-extern Controller controller2;
 extern pros::Controller master;    //Defines the controller for driving
-extern pros::Controller partner;
 
 extern ControllerButton cataShootFast;
 extern ControllerButton cataShootSlow;
@@ -26,6 +24,7 @@ extern ControllerButton cataShootSlow;
 extern ControllerButton intakeOUT;
 //
 extern ControllerButton flapToggle;
+extern ControllerButton Lflap;
 
 extern ControllerButton hang;
 //extern ControllerDigital hangDOWN;
