@@ -26,6 +26,7 @@ ControllerButton intakeOUT(ControllerDigital::L1);
 
 ControllerButton flapToggle(ControllerDigital::down);
 ControllerButton Lflap(ControllerDigital::L2);
+ControllerButton Rflap(ControllerDigital::R2);
 
 ControllerButton hang(ControllerDigital::B);
 //ControllerButton hangDOWN(partner ControllerDigital::R2)

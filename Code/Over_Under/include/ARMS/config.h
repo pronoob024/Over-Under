@@ -46,14 +46,14 @@ namespace arms {
 #define ANGULAR_KD 33
 #define MIN_ERROR                                                              \
 	5 // Minimum distance to target before angular componenet is disabled
-#define LEAD_PCT .7//.6         // Go-to-pose lead distance ratio (0-1)
+#define LEAD_PCT .5//.6         // Go-to-pose lead distance ratio (0-1)
 #define MIN_LINEAR_SPEED 0  // Minimum speed for linear movements
 #define MIN_ANGULAR_SPEED 0 // Minimum speed for angular movements
 
 // Auton selector configuration constants
 #define AUTONS "clAWP", "clDRPT", "fAWP", "fBLTZ", "non" // Names of autonomi, up to 10
 #define HUE 240     // Color of theme from 0-359(H part of HSV)
-#define DEFAULT 4 // Default auton selected
+#define DEFAULT 3 // Default auton selected
 
 // Initializer
 inline void init() {

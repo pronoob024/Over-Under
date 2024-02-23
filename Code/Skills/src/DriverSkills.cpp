@@ -9,6 +9,9 @@ void setFlapSkills() {
   else if (Lflap.isPressed()) {
     flapL.set_value(true);
   }
+  else if (Rflap.isPressed()) {
+    flapR.set_value(true);
+  }
   else {
     flapL.set_value(false);      //Otherwise keep flap closed
     flapR.set_value(false);      //Otherwise keep flap closed
@@ -16,13 +19,14 @@ void setFlapSkills() {
 }
 
 void setHangSkills() {
+      if (!cataLimit.isPressed()) {
+      cataMotor.moveVoltage(10000);
+    }
+    else {cataMotor.moveVoltage(0);}
+
   if (hang.isPressed()) {
     hangLeft.set_value(true);   //Raise left hang
     hangRight.set_value(true);  //Raise right hang
-      if (!cataLimit.isPressed()) {
-      cataMotor.moveVoltage(12000);
-    }
-      else {cataMotor.moveVoltage(0);}
   }
   else {
     hangLeft.set_value(false);  //Lower left hang
