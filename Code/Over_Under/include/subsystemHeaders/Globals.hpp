@@ -21,6 +21,8 @@ extern ControllerButton intakeIN;
 extern ControllerButton intakeOUT;
 //
 extern ControllerButton flapToggle;
+extern ControllerButton Lflap;
+extern ControllerButton Rflap;
 extern ControllerButton backFlapToggle;
 
 extern ControllerButton hang;

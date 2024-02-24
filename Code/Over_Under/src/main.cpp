@@ -106,6 +106,12 @@ void setFlaps() {
     flapL.set_value(true);   //Extend flap
     flapR.set_value(true);   //Extend flap
   }
+  else if (Lflap.isPressed()) {
+    flapL.set_value(true);
+  }
+  else if (Rflap.isPressed()) {
+    flapR.set_value(true);
+  }
   else {
     flapL.set_value(false);      //Otherwise keep flap closed
     flapR.set_value(false);   //Extend flap

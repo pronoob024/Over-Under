@@ -19,6 +19,8 @@ ControllerButton shootCata(ControllerDigital::R1);
 ControllerButton intakeOUT(ControllerDigital::L1);
 
 ControllerButton flapToggle(ControllerDigital::down);
-ControllerButton backFlapToggle(ControllerDigital::R2);
+ControllerButton Lflap(ControllerDigital::L2);
+ControllerButton Rflap(ControllerDigital::R2);
+ControllerButton backFlapToggle(ControllerDigital::Y);
 
 ControllerButton hang(ControllerDigital::B);
