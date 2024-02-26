@@ -11,13 +11,13 @@ arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 arms::chassis::move({13, 11, 123}, 70);    //Move to loading position
 //arms::chassis::move({13, 12, 123}, 70);    //Move to loading position
 
-arms::chassis::turn(121, 80);           /////////
+arms::chassis::turn(122.5, 80);           /////////
 
-//flapL.set_value(true);   //Open flap for match loading
+flapL.set_value(true);   //Open flap for match loading
 
 cataMotor.moveVoltage(12000);   //Match loading
-pros::delay(28000);         //30 seconds
-//pros::delay(3000);         //1 second //for testing
+//pros::delay(28000);         //30 seconds
+pros::delay(3000);         //1 second //for testing
 
 cataMotor.moveVoltage(0);       //Stop catapult
 
@@ -25,7 +25,7 @@ flapL.set_value(false);
 intakeMotor.moveVoltage(-12000);
 
 arms::chassis::turn(45, 75);
-arms::chassis::move({3, -25}, 75, arms::REVERSE);      //Drive to other side
+arms::chassis::move({3, -25}, 70, arms::REVERSE);      //Drive to other side
 arms::chassis::move({4, -80}, 80, arms::REVERSE);      //Drive to other side
 pros::delay(50); 
 
@@ -33,7 +33,7 @@ arms::chassis::move({22, -102}, 80, arms::REVERSE);      //Side goal slam
 arms::chassis::move({40, -102}, 90, arms::REVERSE);      //Side goal slam
 
 
-pros::delay(100);
+pros::delay(150);
 
 arms::chassis::move({28, -90}, 80);     //Drive away from goal
 intakeMotor.moveVoltage(-4000);

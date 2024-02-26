@@ -23,7 +23,7 @@
 //using arms::chassis::move;
 void initialize() {
   arms::init();
-  pros::lcd::initialize();    //Kept in case of debugging
+  //pros::lcd::initialize();    //Kept in case of debugging
 }
 
 /**
@@ -77,14 +77,14 @@ driverSkills();
 //arms::chassis::turn(90);
 //arms::chassis::move({24,-24, -90}, 90);
 //driverSkills();
-  while (true) {
-    // insert other opcontrol code here
-    pros::lcd::set_text(0, "X: " + std::to_string(arms::odom::getPosition().x));
-    pros::lcd::set_text(1, "Y: " + std::to_string(arms::odom::getPosition().y));
-    pros::lcd::set_text(2, "H: " + std::to_string(arms::odom::getHeading()));
-    pros::lcd::set_text(3, "Left: " + std::to_string(arms::odom::getLeftEncoder()));
-    pros::lcd::set_text(4, "Right: " + std::to_string(arms::odom::getRightEncoder()));
-    pros::lcd::set_text(5, "Middle: " + std::to_string(arms::odom::getMiddleEncoder()));
-    pros::delay(10);
-  }
+//  while (true) {
+//    // insert other opcontrol code here
+//    pros::lcd::set_text(0, "X: " + std::to_string(arms::odom::getPosition().x));
+//    pros::lcd::set_text(1, "Y: " + std::to_string(arms::odom::getPosition().y));
+//    pros::lcd::set_text(2, "H: " + std::to_string(arms::odom::getHeading()));
+//    pros::lcd::set_text(3, "Left: " + std::to_string(arms::odom::getLeftEncoder()));
+//    pros::lcd::set_text(4, "Right: " + std::to_string(arms::odom::getRightEncoder()));
+//    pros::lcd::set_text(5, "Middle: " + std::to_string(arms::odom::getMiddleEncoder()));
+//    pros::delay(10);
+//  }
 }
