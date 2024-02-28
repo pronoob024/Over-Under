@@ -9,26 +9,23 @@ pros::delay(350);
 arms::chassis::move({4, -36}, 80, arms::REVERSE);   //Move to match load bar
 
 
-arms::chassis::turn(135, 90);
+arms::chassis::turn(135, 90);   //Align to match load bar
 backFlap.set_value(true);
 arms::chassis::move({10, -46}, 80, arms::REVERSE);   //Move to remove triball
 arms::chassis::turn(180);       //Remove triball
 
 backFlap.set_value(false);
-//arms::chassis::turn(180);
 arms::chassis::move({20, -55}, 85, arms::REVERSE);     //Move to goal slam position
-//arms::chassis::turn(180);
-//arms::chassis::move({33, -55}, arms::REVERSE);     //Back goal slam
-//arms::chassis::move({20, -57}, 80);         //Move away from goal
-arms::chassis::turn(0, 90);
+
+arms::chassis::turn(0, 90);     //Turn to goal
 intakeMotor.moveVoltage(-12000);
-pros::delay(200);
+pros::delay(75);
 arms::chassis::move({37, -58});     //Score intake triball
 arms::chassis::move({20, -50}, 80, arms::REVERSE);     //Move away from goal
 intakeMotor.moveVoltage(12000);
 
 arms::chassis::move({36,-2.5, 90}, 87);   //Close triball
-pros::delay(150);
+pros::delay(100);
 
 arms::chassis::move({40, -20}, 95, arms::REVERSE);   //Close triball back up
 arms::chassis::turn(-58);
@@ -39,7 +36,7 @@ intakeMotor.moveVoltage(12000);
 arms::chassis::turn(-45, 80);  //Turn to far triball
 arms::chassis::move({61,-10}, 85);   //Far triball
 
-arms::chassis::turn(-90);
+arms::chassis::turn(-90);       //Turn to goal
 flapL.set_value(true);
 flapR.set_value(true);
 intakeMotor.moveVoltage(-12000);

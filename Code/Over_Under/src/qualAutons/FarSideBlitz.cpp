@@ -3,9 +3,9 @@
 void FarSideBlitz() {
 arms::odom::reset({0, -5}, 0);   //Reset
 
-flapR.set_value(true);    //Slap
+flapR.set_value(true);    //Slap preload
 
-arms::chassis::move({54, 28}, 100, arms::ASYNC);  //Far triball
+arms::chassis::move({54, 28}, 100, arms::ASYNC);  //Rush far triball
 pros::delay(150);
 flapR.set_value(false);
 intakeMotor.moveVoltage(12000);
@@ -28,18 +28,15 @@ intakeMotor.moveVoltage(12000);
 arms::chassis::move({35, 25}, 90);    //Close triball
 pros::delay(10);
 
-//arms::chassis::move({-1.0, -16.0}, 90, arms::REVERSE);      //Remove match load triball
-arms::chassis::move({9, -24}, 80, arms::REVERSE);
+arms::chassis::move({9, -24}, 80, arms::REVERSE);      //Move to match load bar
 
 backFlap.set_value(true);
-//arms::chassis::move({16, -34.5}, 75, arms::REVERSE);      //Remove match load triball 32
-arms::chassis::turn(185, 90);
+arms::chassis::turn(185, 90);   //Remove match load triball
 
-//arms::chassis::move({5.0, -27.0}, 90, arms::REVERSE);      //Remove match load triball
 backFlap.set_value(false);
 arms::chassis::move({26.0, -31.0}, 90, arms::REVERSE);     //Back goal slam
 
-arms::chassis::move({10.0, -35.0}, 100);
+arms::chassis::move({10.0, -35.0}, 100);    //Move away from goal
 arms::chassis::turn(0, 85);
 intakeMotor.moveVoltage(-12000);
 arms::chassis::move({29.0, -35.0}, 100);        //Final goal slam

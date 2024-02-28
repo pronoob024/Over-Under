@@ -3,7 +3,7 @@
 void CloseSideBlitz() {
 arms::odom::reset({0, 0}, 0);   //Reset
 intakeMotor.moveVoltage(12000);
-flapR.set_value(true);
+flapR.set_value(true);      //Slap Preload
 pros::delay(75);
 flapR.set_value(false);
 arms::chassis::move({48, -5.0}, 100); //Rush center triball
@@ -25,5 +25,4 @@ intakeMotor.moveVoltage(-12000);
 
 arms::chassis::move({-6.0, -19.0}, 75);    //Go to elevation bar
 arms::chassis::move({-6.0, -18}, 80);    //Slightly back away from elevation bar
-
 }
