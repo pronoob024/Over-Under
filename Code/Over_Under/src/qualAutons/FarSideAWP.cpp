@@ -24,24 +24,24 @@ arms::chassis::move({37, -58});     //Score intake triball
 arms::chassis::move({20, -50}, 80, arms::REVERSE);     //Move away from goal
 intakeMotor.moveVoltage(12000);
 
-arms::chassis::move({36,-2.5, 90}, 87);   //Close triball
+arms::chassis::move({36,-3, 90}, 87);   //Close triball
 pros::delay(100);
 
 arms::chassis::move({40, -20}, 95, arms::REVERSE);   //Close triball back up
 arms::chassis::turn(-58);
 intakeMotor.moveVoltage(-12000);    //Deposit triball at goal
-pros::delay(150);
+pros::delay(250);
 intakeMotor.moveVoltage(12000);
 
 arms::chassis::turn(-45, 80);  //Turn to far triball
-arms::chassis::move({61,-10}, 85);   //Far triball
+arms::chassis::move({63,-10}, 85);   //Far triball
 
 arms::chassis::turn(-90);       //Turn to goal
 flapL.set_value(true);
 flapR.set_value(true);
 intakeMotor.moveVoltage(-12000);
 
-arms::chassis::move({58,-40}, 100);    //Goal slam
+arms::chassis::move({58,-46}, 100);    //Goal slam
 
 flapL.set_value(false);
 flapR.set_value(false);
