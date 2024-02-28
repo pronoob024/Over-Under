@@ -69,7 +69,7 @@ arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 
 arms::chassis::move({13, 11, 123}, 75);    //Move to loading position
 
-arms::chassis::turn(121, 80);           /////////123
+arms::chassis::turn(123, 80);           /////////123
 
 flapL.set_value(true);   //Open flap for match loading
 
@@ -87,7 +87,6 @@ flapL.set_value(false);
 intakeMotor.moveVoltage(-12000);
 
 //arms::chassis::turn(-75, arms::THRU);
-arms::chassis::turn(180, arms::THRU | arms::RELATIVE);
 
 while (true){       //Start manual control
   arms::chassis::tank(getLeftJoystickSkills(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)),

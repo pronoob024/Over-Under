@@ -39,7 +39,7 @@ namespace arms {
 #define SETTLE_TIME 150         // amount of time to count as settled
 #define LINEAR_KP 6
 #define LINEAR_KI 0
-#define LINEAR_KD 15 //9
+#define LINEAR_KD 15 
 #define TRACKING_KP 60 // point tracking turning strength //Decrease to make turns smoother
 #define ANGULAR_KP 4
 #define ANGULAR_KI 0
