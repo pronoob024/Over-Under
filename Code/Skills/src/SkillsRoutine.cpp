@@ -16,7 +16,7 @@ flapL.set_value(true);   //Open flap for match loading
 
 cataMotor.moveVoltage(12000);   //Match loading
 pros::delay(28000);         //30 seconds
-//pros::delay(3000);         //1 second //for testing
+//pros::delay(3000);         //1 second for testing
 
 cataMotor.moveVoltage(0);       //Stop catapult
 
