@@ -6,7 +6,7 @@ void setFlapSkills() {
     flapR.set_value(true);   //Extend flap
 
   }
-  else if (Lflap.isPressed()) {
+  else if (intakeOUT.isPressed()) {
     flapL.set_value(true);
   }
   else if (Rflap.isPressed()) {
@@ -67,7 +67,7 @@ arms::odom::reset({0, 0}, 225);   //Reset
 arms::chassis::move({22, 11}, 100, arms::REVERSE);   //Push preload into goal
 arms::chassis::move({32, 11}, 100, arms::REVERSE);   //Push preload into goal
 
-arms::chassis::move({13, 11, 123}, 75);    //Move to loading position
+arms::chassis::move({13, 11, 123}, 70);    //Move to loading position
 
 arms::chassis::turn(123, 80);           //Correct angle
 
@@ -86,7 +86,7 @@ cataMotor.moveVoltage(0);       //Stop catapult
 flapL.set_value(false);
 intakeMotor.moveVoltage(-12000);
 
-arms::chassis::turn(180, arms::THRU | arms::RELATIVE);
+//arms::chassis::turn(180, arms::THRU | arms::RELATIVE);
 
 while (true){       //Start manual control
   arms::chassis::tank(getLeftJoystickSkills(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)),
@@ -98,3 +98,4 @@ while (true){       //Start manual control
   pros::delay(10);
 }
 }
+
