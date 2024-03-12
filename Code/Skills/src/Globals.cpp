@@ -8,7 +8,7 @@ pros::ADIDigitalOut backFlap('E');
 pros::ADIDigitalOut hangLeft('A');
 pros::ADIDigitalOut hangRight('B');
 
-Motor cataMotor(8);
+Motor cataMotor(-17);
 Motor intakeMotor(7);
 ADIButton cataLimit('F');
 

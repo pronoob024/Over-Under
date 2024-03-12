@@ -19,11 +19,6 @@ void setFlapSkills() {
 }
 
 void setHangSkills() {
-      if (!cataLimit.isPressed()) {
-      cataMotor.moveVoltage(10000);
-    }
-    else {cataMotor.moveVoltage(0);}
-
   if (hang.isPressed()) {
     hangLeft.set_value(true);   //Raise left hang
     hangRight.set_value(true);  //Raise right hang

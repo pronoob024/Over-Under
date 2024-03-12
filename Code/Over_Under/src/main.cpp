@@ -45,6 +45,19 @@ void disabled() {}
 void competition_initialize() {
 }
 
+void autonomous1() {
+  arms::odom::reset({0,0}, 0);
+  arms::chassis::turn(45);
+  arms::chassis::move({24,24},100, arms::ASYNC);
+  while (true) {
+    pros::lcd::set_text(0, "X: " + std::to_string(arms::odom::getPosition().x));    //Kept for debugging
+  pros::lcd::set_text(1, "Y: " + std::to_string(arms::odom::getPosition().y));
+  pros::lcd::set_text(2, "H: " + std::to_string(arms::odom::getHeading()));
+  pros::lcd::set_text(3, "Left: " + std::to_string(arms::odom::getLeftEncoder()));
+  pros::lcd::set_text(4, "Right: " + std::to_string(arms::odom::getRightEncoder()));
+  }
+  arms::chassis::waitUntilFinished(0);
+}
 
 void autonomous() {
 if(arms::selector::auton == 1) {
@@ -130,12 +143,6 @@ void setHang() {
   if (hang.isPressed()) {
     hangLeft.set_value(true);   //Raise left hang
     hangRight.set_value(true);  //Raise right hang
-    if (!cataLimit.isPressed()) {
-      cataMotor.moveVoltage(7500);
-    }
-    else {
-      cataMotor.moveVoltage(0);
-    }
   }
   else {
     hangLeft.set_value(false);  //Lower left hang

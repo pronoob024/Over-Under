@@ -49,8 +49,8 @@ namespace arms {
 #define MIN_ERROR                                                              \
 	5 // Minimum distance to target before angular componenet is disabled
 #define LEAD_PCT .5//.6         // Go-to-pose lead distance ratio (0-1)
-#define MIN_LINEAR_SPEED 0  // Minimum speed for linear movements
-#define MIN_ANGULAR_SPEED 0 // Minimum speed for angular movements
+#define MIN_LINEAR_SPEED 70  // Minimum speed for linear movements
+#define MIN_ANGULAR_SPEED 40 // Minimum speed for angular movements
 
 // Auton selector configuration constants
 #define AUTONS "Skills" // Names of autonomi, up to 10
