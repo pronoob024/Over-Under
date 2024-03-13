@@ -3,13 +3,10 @@
 void CloseSideBlitz() {
 arms::odom::reset({0, 0}, 0);   //Reset
 intakeMotor.moveVoltage(12000);
-//flapR.set_value(true);      //Slap Preload
-//pros::delay(75);
-//flapR.set_value(false);
 cataMotor.moveVoltage(8000);
 arms::chassis::move({47, -5.0}, 100); //Rush center triball
 cataMotor.moveVoltage(0);
-//pros::delay(50);
+
 arms::chassis::move({29.0, -0.0}, 100, arms::REVERSE); //Move away from center
 
 arms::chassis::move({2, 18.0}, 80, arms::REVERSE); //Go to matchload bar

@@ -10,7 +10,6 @@ extern pros::ADIDigitalOut hangRight;
 
 extern Motor cataMotor;
 extern Motor intakeMotor;
-extern ADIButton cataLimit;
 
 extern Controller controller;        //Defines the controller for Okapi
 extern pros::Controller master;    //Defines the controller for driving
